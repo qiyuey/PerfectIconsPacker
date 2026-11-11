@@ -8,7 +8,7 @@
 
 底部悬浮栏包含“图标、设置”两个 Tab，支持点击和横向滑动切页。图标页合并当前快照、检查更新、清理缓存及图标应用，主题固定为 HyperOS 4。设置提供 Root 权限状态、重新检测和图标日志；执行图标操作时自动弹出日志。
 
-临时 root 重启后失效时，先重新取得 root，再点击“重新应用”。不需要元模块，不自动重启手机；桌面布局与原系统主题资源保留。fork 的应用 ID 为 `top.qiyuey.perfecticons`，可与上游应用并行安装。
+临时 root 重启后失效时，先重新取得 root，再点击“重新应用”。不需要元模块，不自动重启手机；桌面布局与原系统主题资源保留。应用 ID 为 `io.github.perfecticons`，与上游动态图标适配包名一致。旧版 `top.qiyuey.perfecticons` 会被 Android 视为另一款应用，不能原地覆盖或自动迁移数据。
 
 - [架构与部署](docs/ARCHITECTURE.md)
 - [主题资源格式](docs/THEME_FORMAT.md)

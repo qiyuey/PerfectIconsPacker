@@ -34,7 +34,7 @@ if [ "$mode" = reapply ]; then
     case "$source" in "$base"/releases/*/theme) ;; *) fail '资源记录无效。' ;; esac
 elif [ "$mode" = apply ]; then
     source=${2:-}
-    case "$source" in /data/user/0/top.qiyuey.perfecticons/files/deployments/*/theme|/data/data/top.qiyuey.perfecticons/files/deployments/*/theme) ;; *) fail '资源目录不合法。' ;; esac
+    case "$source" in /data/user/0/io.github.perfecticons/files/deployments/*/theme|/data/data/io.github.perfecticons/files/deployments/*/theme) ;; *) fail '资源目录不合法。' ;; esac
     [ -f "$source/default/icons" ] && [ -f "$source/default/dynamicicons" ] || fail '图标资源不完整。'
     release=$base/releases/$(basename "$(dirname "$source")")
     [ ! -e "$release" ] || fail '该资源版本已经存在。'

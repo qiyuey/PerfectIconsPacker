@@ -40,7 +40,7 @@ with `-s` on every subsequent device command.
 
 ```bash
 adb -s "$ANDROID_SERIAL" install -r app/build/outputs/apk/debug/app-debug.apk
-adb -s "$ANDROID_SERIAL" shell am start -n top.qiyuey.perfecticons/io.github.perfecticons.MainActivity
+adb -s "$ANDROID_SERIAL" shell am start -n io.github.perfecticons/io.github.perfecticons.MainActivity
 ```
 
 Root installation and anything that reboots or modifies system state must be tested

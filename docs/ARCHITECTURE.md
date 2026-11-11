@@ -38,9 +38,9 @@ Java27编译工具链（本机winget Oracle.JDK.27；输出Java21字节码以兼
 
 本机性能验收可用`-PpersonalRelease=true :app:assembleRelease`：R8优化、不可调试，使用既有debug安装签名以覆盖本机旧包；不使用该参数时保留原发布签名流程。
 
-三应用Tab样式统一：MiuixIcons.Regular库引用、24dp、footnote2、1dp图文间距；NavigationLayout与LiquidGlassNavigationBar共用相同实现（仅包名不同）。大字体动态增高，列表根据实际底栏占用+12dp避让；无独立顶部8dp留白。工作区skill的references/standards.md为统一标准入口。
+三应用Tab样式统一：MiuixIcons.Regular库引用、24dp、footnote2、1dp图文间距；NavigationLayout与LiquidGlassNavigationBar共用相同实现（仅包名不同）。大字体动态增高，列表根据实际底栏占用+12dp避让；无独立顶部8dp留白。工作区 [design-hyperos-ui 的 Tab 视觉标准](../../.agents/skills/design-hyperos-ui/references/tab-standards.md)为统一标准入口。
 
-页面布局使用共享PageDesign：12dp手机边距、800dp内容上限、12dp分组间距、16dp自由内容内边距；标题采用Miuix可折叠TopAppBar和主题实色，移除每页额外的模糊采样，仅底栏保留Liquid Glass。状态卡使用主题字体与普通Card，移除巨型溢出图标及自定义色块。标准见工作区design-hyperos-pages。
+页面布局使用共享PageDesign：12dp手机边距、800dp内容上限、12dp分组间距、16dp自由内容内边距；标题采用Miuix可折叠TopAppBar和主题实色，移除每页额外的模糊采样，仅底栏保留Liquid Glass。状态卡使用主题字体与普通Card，移除巨型溢出图标及自定义色块。标准见工作区 [design-hyperos-ui 的页面规范](../../.agents/skills/design-hyperos-ui/references/pages.md)。
 
 ## 已移除功能的残留清理
 

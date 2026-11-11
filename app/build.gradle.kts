@@ -9,7 +9,7 @@ android {
     namespace = "io.github.perfecticons"
 
     defaultConfig {
-        applicationId = "top.qiyuey.perfecticons"
+        applicationId = "io.github.perfecticons"
         minSdk = 33
         targetSdk = 37
         versionCode = 2
