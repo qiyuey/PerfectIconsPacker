@@ -52,16 +52,14 @@ jobs:
         run: |
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-37.2' 'build-tools;37.0.0'
 
-      - name: Unit tests
-        run: ./gradlew :app:testDebugUnitTest --console=plain
+      - name: Build, test and lint
+        run: |
+          set -o pipefail
+          ./gradlew :app:testDebugUnitTest :app:assembleDebug :app:assembleRelease \
+            :app:lintDebug :app:lintRelease --console=plain | tee build-validation.log
 
-      - name: Assemble debug
-        run: ./gradlew :app:assembleDebug --console=plain
-
-      # R8 minification and resource shrinking only run in release; building it
-      # here keeps the keep rules and kotlinx-serialization honest.
-      - name: Assemble release
-        run: ./gradlew :app:assembleRelease --console=plain
+      - name: Verify JVM target and lint analysis
+        run: python3 tools/verify_build.py build-validation.log
 
       # Test reports are a directory tree, so these stay archived (zipped).
       - name: Upload test reports

@@ -41,6 +41,8 @@ android {
         }
     }
 
+    lint { warningsAsErrors = true }
+
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }
@@ -57,15 +59,14 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_27
+        targetCompatibility = JavaVersion.VERSION_27
     }
 }
 
 kotlin {
     jvmToolchain(27)
-    // Current Android Lint cannot read Java 27 classfiles; keep the compiler on JDK 27.
-    compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21) }
+    compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_27) }
 }
 
 dependencies {
@@ -79,7 +80,6 @@ dependencies {
     implementation(libs.compose.ui)
 
     implementation(libs.miuix.ui)
-    implementation(libs.miuix.preference)
     implementation(libs.miuix.icons)
     implementation(libs.miuix.blur)
 

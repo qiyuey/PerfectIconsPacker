@@ -21,7 +21,6 @@ internal object NavigationLayout {
     val horizontalMargin = 24.dp
     val iconSize = 24.dp
     val labelSpacing = 1.dp
-    val contentGap = 12.dp
 }
 
 @Composable
@@ -52,7 +51,3 @@ internal fun navigationBottomPadding(): Dp {
     val inset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     return if (inset != 0.dp) inset + 8.dp else 36.dp
 }
-
-@Composable
-internal fun navigationBarOccupiedHeight(labels: List<String>): Dp =
-    navigationTabHeight(labels) + NavigationLayout.panelPadding * 2 + navigationBottomPadding()

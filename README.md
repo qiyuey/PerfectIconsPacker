@@ -22,6 +22,14 @@
 
 ## 构建与签名
 
+使用 JDK 27，Java/Kotlin 均输出 JVM 27 字节码。完整本地检查：
+
+```sh
+./gradlew :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease --console=plain > build-validation.log 2>&1
+python3 tools/verify_build.py build-validation.log
+```
+
+
 CI 的 Debug APK 使用 Android 调试签名；未配置签名时 Release APK 未签名。配置签名后，`assembleRelease` 会输出已签名的 `app-release.apk`。
 
 签名参数全部通过环境变量读取（见 `app/build.gradle.kts`）：
@@ -85,7 +93,7 @@ apksigner verify --print-certs app/build/outputs/apk/release/app-release.apk
 免登录下载最新构建：
 
 ```text
-https://nightly.link/YifePlayte/PerfectIconsPacker/workflows/build/main/app-release.zip
+https://nightly.link/qiyuey/PerfectIconsPacker/workflows/build/main/app-release.zip
 ```
 
 ## 许可证

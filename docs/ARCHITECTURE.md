@@ -32,9 +32,9 @@ tmpfs合并ROM原资源与上游资源后bind两个系统目录；保存boot和�
 
 ## 构建
 
-Java27编译工具链（本机winget Oracle.JDK.27；输出Java21字节码以兼容当前Lint读取器）、Gradle9.8.2、AGP9.6.0-alpha02、Kotlin2.5.0-Beta2、SDK37.2 / target37、Build Tools37.0.0。Compose1.13.0-rc01、Miuix0.9.4；minSdk33。依赖解析沿用上游的 Gradle Plugin Portal、Google Maven 和 Maven Central，不再维护本地镜像及 CI 分支特例。
+JDK27编译工具链，Java/Kotlin目标均为JVM27（class major71）、Gradle9.9.1、AGP9.6.0-alpha03、Kotlin2.5.0-RC、SDK37.2 / target37、Build Tools37.0.0。Compose1.13.0-rc01、Miuix0.9.4；minSdk33。依赖解析沿用上游的 Gradle Plugin Portal、Google Maven 和 Maven Central，不再维护本地镜像及 CI 分支特例。
 
-验证`assembleDebug`、`testDebugUnitTest`；发布收缩验证使用`assembleRelease`。拖动轨迹回归使用fake时钟；视觉和性能验收单独记录。
+验证`assembleDebug`、`testDebugUnitTest`、`lintDebug`、`lintRelease`；发布收缩验证使用`assembleRelease`。lint警告视为错误，`tools/verify_build.py`核对实际class版本及两种构建的零问题报告，同时拒绝lint跳过新class的内部错误。lint的ASM读取器单独升级至9.11.1，不改变应用依赖。拖动轨迹回归使用fake时钟；视觉和性能验收单独记录。
 
 本机性能验收可用`-PpersonalRelease=true :app:assembleRelease`：R8优化、不可调试，使用既有debug安装签名以覆盖本机旧包；不使用该参数时保留原发布签名流程。
 
@@ -53,3 +53,11 @@ minSdk33使用原有自适应启动图标，删除不可命中的旧密度PNG并
 ## 功能范围
 
 已移除证书与隐私功能的页面、ViewModel、部署逻辑、Root 脚本、包可见性声明、专用测试及文档。升级保留应用数据，不执行历史证书挂载或隐私设置的撤销，也不清理设备上的既有运行状态。
+
+## TLS 与 lint
+
+JGit 内置 `NoCheckX509TrustManager` 供 `http.sslVerify=false` 使用。[JGit 源码包](https://repo.maven.apache.org/maven2/org/eclipse/jgit/org.eclipse.jgit/7.8.1.202611041320-r/org.eclipse.jgit-7.8.1.202611041320-r-sources.jar) 的 `JDKHttpConnectionFactory.JdkConnectionSession` 显示其仅在关闭校验时替换信任管理器。所有同步与检查更新的 HTTP 传输统一安装 `VerifiedHttpsConnectionFactory`：仅接受 HTTPS（包括后续连接），session 明确拒绝 `sslVerify=false`，正常连接沿用平台的证书及主机名校验。回归测试不发网络请求，覆盖关闭校验、明文 HTTP 和正常 HTTPS 默认配置。
+
+`app/lint.xml` 仅排除 JGit JAR 内上述可选分支的两条 `TrustAllX509TrustManager` 告警，应用源码和其他依赖仍由同一检查器扫描；不使用 lint baseline 或全局禁用。备份策略沿用禁止备份，并通过 dataExtractionRules 明确排除云端与设备迁移数据；单色启动图标复用原图形路径。
+
+清理删除没有调用者的导航占用高度辅助函数、contentGap 常量及 Miuix preference 直接依赖；README 下载入口改为个人 fork。保留实际使用的资源同步、快照元数据、日志、root 探测、部署互斥、ZIP 路径防护与液态导航交互，不删除设备上的图标资源或运行状态。

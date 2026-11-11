@@ -21,3 +21,10 @@ signing.properties
 # OS
 .DS_Store
 Thumbs.db
+
+# Local build verification log
+/build-validation.log
+
+# Python verification helpers
+__pycache__/
+*.py[cod]

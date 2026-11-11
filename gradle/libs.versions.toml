@@ -1,7 +1,7 @@
 [versions]
 # Build
-agp = "9.6.0-alpha02"
-kotlin = "2.5.0-Beta2"
+agp = "9.6.0-alpha03"
+kotlin = "2.5.0-RC"
 
 # AndroidX
 activityCompose = "1.14.0-alpha03"
@@ -36,7 +36,6 @@ compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 
 miuix-ui = { module = "top.yukonga.miuix.kmp:miuix-ui-android", version.ref = "miuix" }
-miuix-preference = { module = "top.yukonga.miuix.kmp:miuix-preference-android", version.ref = "miuix" }
 miuix-icons = { module = "top.yukonga.miuix.kmp:miuix-icons-android", version.ref = "miuix" }
 miuix-blur = { module = "top.yukonga.miuix.kmp:miuix-blur-android", version.ref = "miuix" }
 

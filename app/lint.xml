@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- JGit ships NoCheckX509TrustManager for its optional sslVerify=false mode.
+         Every app transport installs VerifiedHttpsConnectionFactory, whose session rejects
+         that mode before JGit can configure it. Keep this dependency-only exception narrow;
+         the same detector still checks all application sources and other dependencies. -->
+    <issue id="TrustAllX509TrustManager">
+        <ignore path="**/org.eclipse.jgit-*.jar" />
+    </issue>
+</lint>

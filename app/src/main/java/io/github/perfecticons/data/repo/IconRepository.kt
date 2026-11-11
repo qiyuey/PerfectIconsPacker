@@ -126,7 +126,7 @@ class IconRepository(
     suspend fun remoteHead(): String? = withContext(Dispatchers.IO) {
         runCatching {
             Git.lsRemoteRepository().setRemote(DEFAULT_REMOTE).setHeads(true)
-                .setTransportConfigCallback { it.timeout = NETWORK_TIMEOUT_SECONDS }
+                .setTransportConfigCallback { configureTransport(it) }
                 .call().firstOrNull { it.name == MAIN_HEAD }?.objectId?.name
         }.getOrNull()
     }
@@ -161,7 +161,7 @@ class IconRepository(
             Transport.open(repository, "origin").use { transport ->
                 transport.setDepth(1)
                 transport.setFilterSpec(FilterSpec.fromFilterLine("blob:none"))
-                transport.timeout = NETWORK_TIMEOUT_SECONDS
+                configureTransport(transport)
                 transport.fetch(
                     NullProgressMonitor.INSTANCE,
                     listOf(RefSpec("+refs/heads/main:$MAIN_REF")),
@@ -180,12 +180,17 @@ class IconRepository(
         retrying("下载资源") {
             configureRemote(repository)
             Transport.open(repository, "origin").use { transport ->
-                transport.timeout = NETWORK_TIMEOUT_SECONDS
+                configureTransport(transport)
                 transport.openFetch().use { connection ->
                     connection.fetch(NullProgressMonitor.INSTANCE, refs, emptySet())
                 }
             }
         }
+    }
+
+    private fun configureTransport(transport: Transport) {
+        VerifiedHttpsConnectionFactory.configure(transport)
+        transport.timeout = NETWORK_TIMEOUT_SECONDS
     }
 
     /** Retry the fixed upstream with bounded exponential backoff. */
