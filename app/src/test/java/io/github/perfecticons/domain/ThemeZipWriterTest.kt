@@ -1,6 +1,7 @@
 package io.github.perfecticons.domain
 
 import io.github.perfecticons.domain.build.ThemeZipWriter
+import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -30,17 +31,18 @@ class ThemeZipWriterTest {
     }
 
     @Test
-    fun `inner archives are stored instead of recompressed`() {
-        val inner = File(temp.root, "icons").apply { writeBytes(ByteArray(4096) { 7 }) }
+    fun `png layers are stored without reencoding`() {
+        val inner = File(temp.root, "0.png").apply { writeBytes(ByteArray(4096) { 7 }) }
         val out = File(temp.root, "out.zip")
         ThemeZipWriter(out.outputStream()).use { writer ->
-            writer.addFile("theme_staging/theme/default/icons", inner)
+            writer.addFile("res/drawable-xxhdpi/com.example/0.png", inner)
         }
         ZipFile(out).use { zip ->
             assertEquals(
                 ZipEntry.STORED,
-                zip.getEntry("theme_staging/theme/default/icons").method,
+                zip.getEntry("res/drawable-xxhdpi/com.example/0.png").method,
             )
+            assertArrayEquals(inner.readBytes(), zip.getInputStream(zip.getEntry("res/drawable-xxhdpi/com.example/0.png")).readBytes())
         }
     }
 }

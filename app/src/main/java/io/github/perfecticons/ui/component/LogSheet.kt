@@ -21,8 +21,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.perfecticons.R
-import io.github.perfecticons.core.log.LogLine
-import io.github.perfecticons.core.log.LogTone
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.Text
@@ -42,7 +40,7 @@ import top.yukonga.miuix.kmp.overlay.OverlayBottomSheet
 fun LogSheet(
     show: Boolean,
     title: String,
-    lines: List<LogLine>,
+    lines: List<String>,
     onDismiss: () -> Unit,
     onCopy: () -> Unit,
 ) {
@@ -80,11 +78,11 @@ fun LogSheet(
 
 @Composable
 fun LogBody(
-    lines: List<LogLine>,
+    lines: List<String>,
     modifier: Modifier = Modifier,
 ) {
     val listState = rememberLazyListState()
-    LaunchedEffect(lines.size) {
+    LaunchedEffect(lines.size, lines.lastOrNull()) {
         if (lines.isNotEmpty()) listState.scrollToItem(lines.lastIndex)
     }
     Column(
@@ -103,8 +101,8 @@ fun LogBody(
             ) {
                 items(lines) { line ->
                     Text(
-                        text = line.text.trimEnd('\r', '\n'),
-                        color = line.tone.color(),
+                        text = line.trimEnd('\r', '\n'),
+                        color = Color(0xFFD1D5DB),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 12.sp,
                         lineHeight = 16.sp,
@@ -113,13 +111,4 @@ fun LogBody(
             }
         }
     }
-}
-
-private fun LogTone.color(): Color = when (this) {
-    LogTone.Default -> Color(0xFFD1D5DB)
-    LogTone.Step -> Color(0xFF60A5FA)
-    LogTone.Success -> Color(0xFF5FD68A)
-    LogTone.Warning -> Color(0xFFFFC94D)
-    LogTone.Error -> Color(0xFFFF6B6B)
-    LogTone.Dim -> Color(0xFF8B95A5)
 }

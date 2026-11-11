@@ -1,188 +1,61 @@
 package io.github.perfecticons.ui.screen
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import io.github.perfecticons.R
-import io.github.perfecticons.data.settings.ThemeMode
 import io.github.perfecticons.ui.component.ActionButton
-import io.github.perfecticons.ui.component.ActionRow
 import io.github.perfecticons.ui.component.PageScaffold
 import io.github.perfecticons.ui.component.SectionCard
-import io.github.perfecticons.ui.viewmodel.SettingsViewModel
-import top.yukonga.miuix.kmp.basic.Text
-import top.yukonga.miuix.kmp.basic.TextField
-import top.yukonga.miuix.kmp.preference.OverlayDropdownPreference
-import top.yukonga.miuix.kmp.theme.MiuixTheme
+import io.github.perfecticons.ui.component.StatusCard
+import io.github.perfecticons.ui.component.StatusTone
+import io.github.perfecticons.ui.viewmodel.RootViewModel
 
+/** One shared root permission entry for all features. */
 @Composable
 fun SettingsScreen(
     padding: PaddingValues,
-    themeMode: ThemeMode,
-    onThemeModeChange: (ThemeMode) -> Unit,
-    viewModel: SettingsViewModel = viewModel(),
+    rootViewModel: RootViewModel,
+    busy: Boolean,
+    hasIconLogs: Boolean,
+    onIconLogs: () -> Unit,
 ) {
-    PageScaffold(
-        title = stringResource(R.string.settings_title),
-        padding = padding,
-    ) {
+    val rootState by rootViewModel.state.collectAsStateWithLifecycle()
+    val ready = rootState.rootStatus?.granted == true && rootState.error == null
+    PageScaffold(title = "设置", padding = padding) {
         item {
-            SectionCard(
-                modifier = Modifier.animateItem(),
-                title = stringResource(R.string.settings_section_appearance),
-                padded = false,
-            ) {
-                OverlayDropdownPreference(
-                    items = ThemeMode.entries.map { stringResource(it.labelRes) },
-                    selectedIndex = themeMode.ordinal,
-                    title = stringResource(R.string.settings_dark_mode),
-                    summary = stringResource(R.string.settings_dark_mode_summary),
-                    onSelectedIndexChange = { onThemeModeChange(ThemeMode.entries[it]) },
-                )
+            StatusCard(
+                tone = when {
+                    rootState.isDetecting -> StatusTone.Warning
+                    ready -> StatusTone.Ready
+                    else -> StatusTone.Error
+                },
+                title = when {
+                    rootState.isDetecting -> "正在检测 Root"
+                    rootState.error != null -> "Root 检测失败"
+                    ready -> "Root 已就绪"
+                    else -> "Root 未授权"
+                },
+                detail = rootState.error ?: when {
+                    rootState.isDetecting -> "正在确认本机 Root 权限。"
+                    ready -> "已获得 Root 权限，可用于应用与恢复图标。"
+                    else -> "请在 Root 管理器中允许完美图标使用 Root。"
+                },
+                footer = "应用图标需要 Root 权限。",
+            )
+        }
+        item {
+            SectionCard {
+                ActionButton("重新检测", { rootViewModel.detect(recheck = true) },
+                    enabled = !rootState.isDetecting && !busy, modifier = Modifier.fillMaxWidth())
             }
         }
         item {
-            SectionCard(
-                modifier = Modifier.animateItem(),
-                title = stringResource(R.string.settings_section_repo),
-                contentSpacing = 8.dp,
-            ) {
-                RepoForm(viewModel)
+            SectionCard(title = "日志") {
+                ActionButton("查看图标日志", onIconLogs, enabled = hasIconLogs, modifier = Modifier.fillMaxWidth())
             }
         }
-        item {
-            SectionCard(
-                modifier = Modifier.animateItem(),
-                title = stringResource(R.string.settings_section_network),
-                contentSpacing = 8.dp,
-            ) {
-                ProxyForm(viewModel)
-            }
-        }
-    }
-}
-
-@Composable
-private fun RepoForm(viewModel: SettingsViewModel) {
-    val repo by viewModel.repo.collectAsStateWithLifecycle()
-    var repoUrl by remember(repo) { mutableStateOf(repo.repoUrl) }
-    var accelerator by remember(repo) { mutableStateOf(repo.accelerator) }
-    var invalid by remember { mutableStateOf(false) }
-
-    TextField(
-        value = repoUrl,
-        onValueChange = { repoUrl = it; invalid = false },
-        modifier = Modifier.fillMaxWidth(),
-        label = stringResource(R.string.settings_repo_url),
-        useLabelAsPlaceholder = true,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri),
-    )
-    TextField(
-        value = accelerator,
-        onValueChange = { accelerator = it; invalid = false },
-        modifier = Modifier.fillMaxWidth(),
-        label = stringResource(R.string.settings_repo_accelerator),
-        useLabelAsPlaceholder = true,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri),
-    )
-    Text(
-        text = stringResource(R.string.settings_repo_accelerator_hint),
-        style = MiuixTheme.textStyles.footnote2,
-        color = MiuixTheme.colorScheme.onSurfaceVariantSummary,
-    )
-    AnimatedVisibility(
-        visible = invalid,
-        enter = fadeIn() + expandVertically(),
-        exit = fadeOut() + shrinkVertically(),
-    ) {
-        Text(
-            text = stringResource(R.string.settings_repo_invalid),
-            style = MiuixTheme.textStyles.footnote2,
-            color = MiuixTheme.colorScheme.error,
-        )
-    }
-    Text(
-        text = stringResource(
-            R.string.settings_repo_current,
-            accelerator.trim().ifEmpty { stringResource(R.string.settings_repo_direct) },
-        ),
-        style = MiuixTheme.textStyles.footnote2,
-        color = MiuixTheme.colorScheme.onSurfaceVariantSummary,
-    )
-    ActionRow {
-        ActionButton(
-            text = stringResource(R.string.settings_repo_save),
-            onClick = { invalid = !viewModel.updateRepo(repoUrl, accelerator) },
-            primary = true,
-            modifier = Modifier.weight(1f),
-        )
-        ActionButton(
-            text = stringResource(R.string.settings_repo_reset),
-            onClick = { viewModel.resetRepo(); invalid = false },
-            modifier = Modifier.weight(1f),
-        )
-    }
-}
-
-@Composable
-private fun ProxyForm(viewModel: SettingsViewModel) {
-    val proxy by viewModel.proxy.collectAsStateWithLifecycle()
-    var host by remember(proxy) { mutableStateOf(proxy?.host ?: "") }
-    var port by remember(proxy) { mutableStateOf(proxy?.port?.toString() ?: "") }
-
-    Text(
-        text = stringResource(R.string.settings_proxy_summary),
-        style = MiuixTheme.textStyles.footnote2,
-        color = MiuixTheme.colorScheme.onSurfaceVariantSummary,
-    )
-    TextField(
-        value = host,
-        onValueChange = { host = it },
-        modifier = Modifier.fillMaxWidth(),
-        label = stringResource(R.string.settings_proxy_host),
-        useLabelAsPlaceholder = true,
-        singleLine = true,
-    )
-    TextField(
-        value = port,
-        onValueChange = { port = it.filter(Char::isDigit) },
-        modifier = Modifier.fillMaxWidth(),
-        label = stringResource(R.string.settings_proxy_port),
-        useLabelAsPlaceholder = true,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-    )
-    ActionRow {
-        ActionButton(
-            text = stringResource(R.string.settings_proxy_save),
-            onClick = { viewModel.updateProxy(host, port) },
-            primary = true,
-            enabled = host.isNotBlank() && port.toIntOrNull()?.let { it in 1..65535 } == true,
-            modifier = Modifier.weight(1f),
-        )
-        ActionButton(
-            text = stringResource(R.string.settings_proxy_clear),
-            onClick = viewModel::clearProxy,
-            enabled = proxy != null,
-            modifier = Modifier.weight(1f),
-        )
     }
 }

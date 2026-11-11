@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [main, main-clean]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v6
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '27'
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
@@ -47,6 +47,10 @@ jobs:
             echo "SIGNING_KEY_ALIAS=$SIGNING_KEY_ALIAS"
             echo "SIGNING_KEY_PASSWORD=$SIGNING_KEY_PASSWORD"
           } >> "$GITHUB_ENV"
+
+      - name: Install Android SDK packages
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-37.2' 'build-tools;37.0.0'
 
       - name: Unit tests
         run: ./gradlew :app:testDebugUnitTest --console=plain

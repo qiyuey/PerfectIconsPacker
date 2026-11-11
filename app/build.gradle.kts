@@ -1,19 +1,19 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.compose")
-    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
-    compileSdk = 37
+    buildToolsVersion = "37.0.0"
+    compileSdk { version = release(37) { minorApiLevel = 2 } }
     namespace = "io.github.perfecticons"
 
     defaultConfig {
-        applicationId = "io.github.perfecticons"
+        applicationId = "top.qiyuey.perfecticons"
         minSdk = 33
-        targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
+        targetSdk = 37
+        versionCode = 2
+        versionName = "0.2.0"
     }
 
     signingConfigs {
@@ -33,15 +33,20 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            if (System.getenv("SIGNING_STORE_FILE").isNullOrBlank().not()) {
+            if (providers.gradleProperty("personalRelease").orNull == "true") {
+                signingConfig = signingConfigs.getByName("debug")
+            } else if (System.getenv("SIGNING_STORE_FILE").isNullOrBlank().not()) {
                 signingConfig = signingConfigs.getByName("release")
             }
         }
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
     buildFeatures {
         compose = true
-        buildConfig = true
     }
 
     packaging {
@@ -58,14 +63,16 @@ android {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(27)
+    // Current Android Lint cannot read Java 27 classfiles; keep the compiler on JDK 27.
+    compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21) }
 }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     implementation(libs.compose.foundation)
     implementation(libs.compose.runtime)
@@ -74,18 +81,14 @@ dependencies {
     implementation(libs.miuix.ui)
     implementation(libs.miuix.preference)
     implementation(libs.miuix.icons)
-    implementation(libs.miuix.nav)
     implementation(libs.miuix.blur)
-    implementation(libs.material.icons.extended)
 
     implementation(libs.kotlinx.coroutines.android)
-
-    implementation("io.github.ranlee1:jpinyin:1.0.1")
 
     implementation(libs.libsu.core)
 
     implementation(libs.jgit)
-    implementation("org.slf4j:slf4j-nop:2.0.17")
+    implementation(libs.slf4j.nop)
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
 }

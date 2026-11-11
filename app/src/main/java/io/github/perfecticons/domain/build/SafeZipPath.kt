@@ -23,36 +23,11 @@ object SafeZipPath {
         return normalized
     }
 
-    fun normalize(path: String): String = path
+    private fun normalize(path: String): String = path
         .replace('\\', '/')
         .split('/')
         .filter { it.isNotEmpty() && it != "." }
         .joinToString("/")
 
-    fun isSafe(path: String): Boolean = runCatching { requireSafe(path) }.isSuccess
 
-    /** Reserved top-level names that customization must not overwrite. */
-    val RESERVED_MODULE_NAMES = setOf("icons", "dynamicicons", "transform_config.xml")
-    val RESERVED_MTZ_ROOT_NAMES = setOf(
-        "icons",
-        "description.xml",
-        "miui_mod_icons",
-        "preview",
-        "wallpaper",
-        "module.prop",
-        "META-INF",
-        "system",
-    )
-
-    fun isReservedFor(target: Target, relativePath: String): Boolean {
-        // Case-insensitive: a `COM.MIUI.HOME` addon would otherwise slip past
-        // the check and leave the theme without its required `com.miui.home`.
-        val top = normalize(relativePath).substringBefore('/').lowercase()
-        return when (target) {
-            Target.Module -> top in RESERVED_MODULE_NAMES
-            Target.Mtz -> top in RESERVED_MTZ_ROOT_NAMES
-        }
-    }
-
-    enum class Target { Module, Mtz }
 }

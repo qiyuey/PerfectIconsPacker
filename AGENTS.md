@@ -15,10 +15,9 @@
 app/                 Android application (single module, layered packages)
 app/src/main/java/io/github/perfecticons/
   core/              models, pure utilities
-  data/              repository fetch, customization storage, settings, root
-  domain/            assembly, packaging, import validation
+  data/              repository fetch, icon-style preferences, root
+  domain/            upstream assembly, deployable archives
   ui/                Compose + Miuix screens, theme, navigation, viewmodels
-  provider/          SAF DocumentsProvider
 docs/                design and format documentation
 tmp/                 local reference files (ignored)
 ```
@@ -31,21 +30,25 @@ tmp/                 local reference files (ignored)
 
 ## Device
 
-Test only on the device the user designates for the current session. Never assume a
-serial: read it from `ANDROID_SERIAL` (or the serial the user names) and pass it
-explicitly with `-s` on every command.
+Prefer the device designated by the user for the current session or by
+`ANDROID_SERIAL`. If neither is set, use the read-only `adb devices -l` inventory:
+when exactly one device is listed, select its serial automatically without asking;
+when multiple devices are listed (including offline or unauthorized entries), ask
+the user to choose. If the sole device is unauthorized, keep that serial selected
+and ask the user to approve USB debugging. Pass the selected serial explicitly
+with `-s` on every subsequent device command.
 
 ```bash
 adb -s "$ANDROID_SERIAL" install -r app/build/outputs/apk/debug/app-debug.apk
-adb -s "$ANDROID_SERIAL" shell am start -n io.github.perfecticons/.MainActivity
+adb -s "$ANDROID_SERIAL" shell am start -n top.qiyuey.perfecticons/io.github.perfecticons.MainActivity
 ```
 
 Root installation and anything that reboots or modifies system state must be tested
 only with explicit user approval.
 
-Do not run `adb devices`, `adb -e`, or any multi-device command that could touch
-another machine's device. If the designated serial fails, stop and report; do not
-fall back to another device.
+Use `adb devices -l` only for read-only device selection. Do not use `adb -e` or
+send operations to multiple devices. If the selected serial disconnects or fails,
+stop and report; do not fall back to another device.
 
 ## Documentation
 

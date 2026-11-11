@@ -14,20 +14,15 @@ import java.util.zip.ZipOutputStream
  */
 class ThemeZipWriter(
     output: OutputStream,
-    private val storedExtensions: Set<String> = setOf("png", "jpg", "jpeg", "webp", "zip"),
 ) : java.io.Closeable {
+    private val storedExtensions = setOf("png", "jpg", "jpeg", "webp", "zip")
     private val zip = ZipOutputStream(output)
     private var closed = false
-
-    /** Inner theme archives carry no extension; they are already compressed. */
-    private val storedNames = setOf("icons", "dynamicicons")
 
     fun addFile(entryName: String, file: File) {
         val path = SafeZipPath.requireSafe(entryName)
         val entry = ZipEntry(path)
-        if (file.extension.lowercase() in storedExtensions ||
-            path.substringAfterLast('/').lowercase() in storedNames
-        ) {
+        if (file.extension.lowercase() in storedExtensions) {
             entry.method = ZipEntry.STORED
             entry.size = file.length()
             entry.compressedSize = file.length()
@@ -38,22 +33,6 @@ class ThemeZipWriter(
         entry.time = file.lastModified().coerceAtLeast(0L)
         zip.putNextEntry(entry)
         file.inputStream().use { it.copyTo(zip, DEFAULT_BUFFER_SIZE) }
-        zip.closeEntry()
-    }
-
-    fun addBytes(entryName: String, bytes: ByteArray, deflated: Boolean = true) {
-        val path = SafeZipPath.requireSafe(entryName)
-        val entry = ZipEntry(path)
-        if (deflated) {
-            entry.method = ZipEntry.DEFLATED
-        } else {
-            entry.method = ZipEntry.STORED
-            entry.size = bytes.size.toLong()
-            entry.compressedSize = bytes.size.toLong()
-            entry.crc = CRC32().apply { update(bytes) }.value
-        }
-        zip.putNextEntry(entry)
-        zip.write(bytes)
         zip.closeEntry()
     }
 

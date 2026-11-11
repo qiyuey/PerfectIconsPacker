@@ -1,33 +1,28 @@
-# PerfectIconsPacker
+# PerfectIconsPacker — 本机应用版
 
-面向 **HyperOS 4** 的“完美图标补全”打包器。
+个人 fork：[qiyuey/PerfectIconsPacker](https://github.com/qiyuey/PerfectIconsPacker)，上游：[YifePlayte/PerfectIconsPacker](https://github.com/YifePlayte/PerfectIconsPacker)。
 
-从上游图标资源仓库直接拉取资源，在设备本地组装并导出：
+面向 HyperOS 4 的完美图标应用工具。从上游同步资源，使用已有 root 直接挂载并刷新图标缓存。首页提供“应用图标”“重新应用”“恢复系统图标”，不再导出 ZIP / MTZ 或安装 root 模块。
 
-- 模块 zip（同一产物同时适配 Magisk 与 KernelSU）
-- MTZ 主题包
+底栏使用 Liquid Glass，采用背景采样、折射透镜、按压形变与拖动吸附。应用明暗模式固定跟随系统。
 
-应用使用 Kotlin + Jetpack Compose + [Miuix](https://github.com/compose-miuix-ui/miuix) 构建，root 能力通过 [libsu](https://github.com/topjohnwu/libsu) 提供。
+底部悬浮栏包含“图标、设置”两个 Tab，支持点击和横向滑动切页。图标页合并当前快照、检查更新、清理缓存及图标应用，主题固定为 HyperOS 4。设置提供 Root 权限状态、重新检测和图标日志；执行图标操作时自动弹出日志。
 
-## 状态
+临时 root 重启后失效时，先重新取得 root，再点击“重新应用”。不需要元模块，不自动重启手机；桌面布局与原系统主题资源保留。fork 的应用 ID 为 `top.qiyuey.perfecticons`，可与上游应用并行安装。
 
-已实现：直接拉取上游资源、HyperOS 4 模块与 MTZ 构建、图标自定义、SAF 管理与保存、Magisk/KernelSU 安装。
-
-- [架构设计](docs/ARCHITECTURE.md)
-- [主题格式](docs/THEME_FORMAT.md)
-- [自定义模型](docs/CUSTOMIZATION.md)
-
+- [架构与部署](docs/ARCHITECTURE.md)
+- [主题资源格式](docs/THEME_FORMAT.md)
 ## 约束
 
 - 只支持 HyperOS 4 的主题结构。
-- 图标资源直接来自 `pzcn/Perfect-Icons-Completion-Project`，不经过中转仓库；
-  可选的加速链接只作为传输层前缀，直连地址始终保留为回退。
+- 图标资源固定直连 `pzcn/Perfect-Icons-Completion-Project`，不提供仓库、加速或代理编辑。
+- 导航为图标、设置；设置包含 Root 权限与图标日志入口。图标主题固定 HyperOS 4，无独立资源页或主题选择器。已移除自定义编辑与 SAF 入口，旧自定义文件不再参与应用。
 - 图标资源仓库只读：不修改、不提交、不执行其中任何脚本。
 - 参考项目 `Perfect-Icons-APP` 中的 shell 脚本**禁止执行**，其中大量变量需要外部注入。
 
 ## 构建与签名
 
-CI 默认产出未签名 APK。配置签名后，`assembleRelease` 会输出已签名的 `app-release.apk`。
+CI 的 Debug APK 使用 Android 调试签名；未配置签名时 Release APK 未签名。配置签名后，`assembleRelease` 会输出已签名的 `app-release.apk`。
 
 签名参数全部通过环境变量读取（见 `app/build.gradle.kts`）：
 

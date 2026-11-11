@@ -1,15 +1,17 @@
 package io.github.perfecticons.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
-import top.yukonga.miuix.kmp.basic.TextButton
+import top.yukonga.miuix.kmp.basic.Button
+import top.yukonga.miuix.kmp.basic.Text
+import top.yukonga.miuix.kmp.theme.MiuixTheme
 
 /**
  * Standard action bar for cards and forms: equal-width buttons side by side,
@@ -39,15 +41,14 @@ fun ActionButton(
     primary: Boolean = false,
     enabled: Boolean = true,
 ) {
-    TextButton(
-        text = text,
+    Button(
         onClick = onClick,
         enabled = enabled,
         colors = if (primary) {
-            ButtonDefaults.textButtonColorsPrimary()
+            ButtonDefaults.buttonColorsPrimary()
         } else {
-            ButtonDefaults.textButtonColors()
+            ButtonDefaults.buttonColors()
         },
-        modifier = modifier,
-    )
+        modifier = modifier.heightIn(min = PageDesign.minimumTouchHeight),
+    ) { Text(text, style = MiuixTheme.textStyles.button) }
 }

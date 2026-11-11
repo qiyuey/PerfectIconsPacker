@@ -18,7 +18,6 @@ import org.eclipse.jgit.transport.RefSpec
 import org.eclipse.jgit.transport.Transport
 import org.eclipse.jgit.treewalk.TreeWalk
 import java.io.File
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.coroutines.coroutineContext
 
 /**
@@ -31,24 +30,7 @@ import kotlin.coroutines.coroutineContext
  */
 class IconRepository(
     private val root: File,
-    /**
-     * Resolved on every network call rather than at construction, so editing the
-     * repository URL or accelerator in settings takes effect without a restart.
-     */
-    private val remoteUrls: () -> List<String> = { listOf(DEFAULT_REMOTE) },
 ) {
-    private var activeRemote: String = DEFAULT_REMOTE
-
-    /** Configured endpoints, with the direct URL as the guaranteed last resort. */
-    private fun endpoints(): List<String> =
-        remoteUrls().filter { it.isNotBlank() }.ifEmpty { listOf(DEFAULT_REMOTE) }
-
-    /**
-     * Identity of the upstream repository: the direct URL, which is always the
-     * last candidate. The accelerated endpoint is transport, not identity.
-     */
-    private fun repositoryIdentity(): String = endpoints().last()
-
     private val metaDir = File(root, "meta.git")
     private val blobsDir = File(root, "blobs.git")
     val snapshotDir = File(root, "snapshot")
@@ -62,20 +44,19 @@ class IconRepository(
         styles: Set<String>,
         onProgress: (SyncProgress) -> Unit,
     ): RepoSnapshot = withContext(Dispatchers.IO) {
-        val startedAt = System.currentTimeMillis()
         val opened = mutableListOf<Repository>()
         try {
             root.mkdirs()
             val meta = openBare(metaDir).also { opened += it }
             val blobs = openBare(blobsDir).also { opened += it }
 
-            onProgress(SyncProgress.FetchingTrees(attempt = 1))
-            activeRemote = fetchTrees(meta)
+            onProgress(SyncProgress.FetchingTrees)
+            fetchTrees(meta)
 
             val head = meta.exactRef(MAIN_REF)
                 ?: error("无法获取 $MAIN_REF")
             val commitId = head.objectId
-            onProgress(SyncProgress.Resolving(commitId.name))
+            onProgress(SyncProgress.Resolving)
 
             val selected = collectSelectedPaths(meta, commitId, styles)
             if (selected.isEmpty()) error("上游仓库没有可用图标资源")
@@ -83,7 +64,7 @@ class IconRepository(
             val missing = selected.filter { !blobs.objectDatabase.has(ObjectId.fromString(it.blobId)) }
 
             if (missing.isNotEmpty()) {
-                configureRemote(blobs, activeRemote)
+                configureRemote(blobs)
                 val batches = missing.chunked(BLOB_BATCH_SIZE)
                 var fetched = 0
                 batches.forEachIndexed { index, batch ->
@@ -105,7 +86,7 @@ class IconRepository(
             val sized = selected.map { file ->
                 file.copy(
                     size = runCatching {
-                        blobs.open(ObjectId.fromString(file.blobId)).size.toLong()
+                        blobs.open(ObjectId.fromString(file.blobId)).size
                     }.getOrDefault(0L),
                 )
             }
@@ -116,97 +97,43 @@ class IconRepository(
                 styles = styles.sorted(),
                 syncedAt = System.currentTimeMillis(),
                 files = sized,
-                sourceRepo = repositoryIdentity(),
+                sourceRepo = DEFAULT_REMOTE,
             )
             RepoSnapshotStore.save(root, snapshot)
 
-            val elapsed = System.currentTimeMillis() - startedAt
-            onProgress(SyncProgress.Done(commitId.name, sized.size, snapshot.totalBytes, elapsed))
+            onProgress(SyncProgress.Done)
 
             snapshot
         } catch (t: Throwable) {
             Log.e(TAG, "sync failed", t)
-            onProgress(SyncProgress.Failed(t.message ?: t::class.java.simpleName, t))
+            onProgress(SyncProgress.Failed(t.message ?: t::class.java.simpleName))
             throw t
         } finally {
             // Failure paths used to leak the bare repository handles.
-            opened.forEach { runCatching { it.close() } }
+            opened.forEach { repository ->
+                try { repository.close() } catch (error: Exception) { Log.w(TAG, "Repository close failed", error) }
+            }
         }
     }
 
-    fun status(): RepoStatus = RepoStatus(
-        snapshot = RepoSnapshotStore.load(root),
-        snapshotDir = snapshotDir,
-        gitDir = root,
-    )
+    fun snapshot(): RepoSnapshot? = RepoSnapshotStore.load(root)
 
     /**
      * Latest upstream `main` commit from a lightweight ls-remote, or `null`
-     * when every endpoint is unreachable. Used to tell the user whether their
+     * when upstream is unreachable. Used to tell the user whether their
      * snapshot is current without downloading anything.
      */
     suspend fun remoteHead(): String? = withContext(Dispatchers.IO) {
-        for (url in endpoints()) {
-            val head = runCatching {
-                Git.lsRemoteRepository()
-                    .setRemote(url)
-                    .setHeads(true)
-                    .setTransportConfigCallback { transport -> transport.timeout = 60 }
-                    .call()
-                    .firstOrNull { it.name == MAIN_HEAD }
-                    ?.objectId
-                    ?.name
-            }.getOrNull()
-            if (head != null) return@withContext head
-        }
-        null
-    }
-
-    /**
-     * Style folders present upstream (`themes/<style>`), read from the fetched
-     * tree. Empty before the first sync; `common` is not a selectable style.
-     */
-    fun availableStyles(): List<String> {
-        val meta = openBare(metaDir)
-        try {
-            val head = meta.exactRef(MAIN_REF)?.objectId ?: return emptyList()
-            RevWalk(meta).use { walk ->
-                val tree = walk.parseCommit(head).tree
-                TreeWalk(meta).use { tw ->
-                    tw.addTree(tree)
-                    tw.isRecursive = false
-                    while (tw.next()) {
-                        if (tw.nameString != "themes" || !tw.isSubtree) continue
-                        tw.enterSubtree()
-                        val styles = mutableListOf<String>()
-                        while (tw.next()) {
-                            if (tw.isSubtree && tw.nameString != PathSelector.COMMON_STYLE) {
-                                styles += tw.nameString
-                            }
-                        }
-                        return styles.sorted()
-                    }
-                }
-            }
-        } finally {
-            meta.close()
-        }
-        return emptyList()
-    }
-
-    /** Returns the snapshot only if it matches the requested style set. */
-    fun snapshotForStyles(styles: Set<String>): RepoSnapshot? {
-        val snapshot = RepoSnapshotStore.load(root) ?: return null
-        return snapshot.takeIf { it.styles.toSet() == styles }
+        runCatching {
+            Git.lsRemoteRepository().setRemote(DEFAULT_REMOTE).setHeads(true)
+                .setTransportConfigCallback { it.timeout = NETWORK_TIMEOUT_SECONDS }
+                .call().firstOrNull { it.name == MAIN_HEAD }?.objectId?.name
+        }.getOrNull()
     }
 
     fun clear() {
         root.deleteRecursively()
     }
-
-    /** Strips any userinfo so credentials never reach logcat. */
-    private fun redactUrl(url: String): String =
-        url.replace(Regex("([^/]*//)[^@/]*@"), "$1")
 
     private fun openBare(dir: File): Repository {
         dir.mkdirs()
@@ -219,18 +146,18 @@ class IconRepository(
             }
     }
 
-    private fun configureRemote(repository: Repository, url: String) {
+    private fun configureRemote(repository: Repository) {
         repository.config.apply {
-            setString("remote", "origin", "url", url)
+            setString("remote", "origin", "url", DEFAULT_REMOTE)
             setString("remote", "origin", "fetch", "+refs/heads/*:refs/remotes/origin/*")
             setBoolean("gc", null, "auto", false)
             save()
         }
     }
 
-    private suspend fun fetchTrees(repository: Repository): String =
-        retrying("读取仓库目录") { _, url ->
-            configureRemote(repository, url)
+    private suspend fun fetchTrees(repository: Repository) =
+        retrying("读取仓库目录") {
+            configureRemote(repository)
             Transport.open(repository, "origin").use { transport ->
                 transport.setDepth(1)
                 transport.setFilterSpec(FilterSpec.fromFilterLine("blob:none"))
@@ -240,7 +167,6 @@ class IconRepository(
                     listOf(RefSpec("+refs/heads/main:$MAIN_REF")),
                 )
             }
-            url
         }
 
     private suspend fun fetchBatch(repository: Repository, batch: List<RepoFile>) {
@@ -251,8 +177,8 @@ class IconRepository(
                 ObjectId.fromString(file.blobId),
             )
         }
-        retrying("下载资源") { _, url ->
-            configureRemote(repository, url)
+        retrying("下载资源") {
+            configureRemote(repository)
             Transport.open(repository, "origin").use { transport ->
                 transport.timeout = NETWORK_TIMEOUT_SECONDS
                 transport.openFetch().use { connection ->
@@ -262,32 +188,21 @@ class IconRepository(
         }
     }
 
-    @OptIn(kotlinx.coroutines.DelicateCoroutinesApi::class)
-    /**
-     * Tries every configured endpoint, then retries the whole list with
-     * exponential backoff. The accelerated endpoint is preferred, but the direct
-     * repository URL is always the last resort.
-     */
-    private suspend fun <T> retrying(operation: String, block: (attempt: Int, url: String) -> T): T {
-        val targets = endpoints()
+    /** Retry the fixed upstream with bounded exponential backoff. */
+    private suspend fun <T> retrying(operation: String, block: () -> T): T {
         var last: Throwable? = null
         for (attempt in 1..MAX_ATTEMPTS) {
-            for (url in targets) {
-                coroutineContext.ensureActive()
-                try {
-                    return block(attempt, url)
-                } catch (t: Throwable) {
-                    last = t
-                    Log.w(TAG, "$operation failed via ${redactUrl(url)}", t)
-                }
-            }
+            coroutineContext.ensureActive()
+            try { return block() }
+            catch (cancelled: kotlinx.coroutines.CancellationException) { throw cancelled }
+            catch (failure: Exception) { last = failure }
             if (attempt < MAX_ATTEMPTS) {
                 val delayMs = RETRY_BASE_DELAY_MS shl (attempt - 1)
                 Log.w(TAG, "$operation failed on attempt $attempt, retrying in $delayMs ms", last)
                 kotlinx.coroutines.delay(delayMs)
             }
         }
-        throw last ?: IllegalStateException("$operation failed")
+        throw checkNotNull(last)
     }
 
     private fun collectSelectedPaths(
@@ -308,9 +223,6 @@ class IconRepository(
             }
         }
     }
-
-    private fun ObjectId.sizeOrZero(repository: Repository): Long =
-        runCatching { repository.open(this).size.toLong() }.getOrDefault(0L)
 
     private fun materialize(
         repository: Repository,

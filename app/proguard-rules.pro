@@ -18,15 +18,12 @@
 -keep class org.slf4j.** { *; }
 -dontwarn org.slf4j.**
 
-# RootInstaller 通过反射把 libsu 缓存的 root 结论重置为“未知”，否则运行期间
+# RootDetector 通过反射把 libsu 缓存的 root 结论重置为“未知”，否则运行期间
 # 新授予的 root 不会生效。字段被混淆或裁剪会让重置静默失效，因此保留名字。
 -keepnames class com.topjohnwu.superuser.internal.Utils
 -keepclassmembers class com.topjohnwu.superuser.internal.Utils {
     private static int currentRootState;
 }
-
-# Keep the SAF provider entry point.
--keep class io.github.perfecticons.provider.** { *; }
 
 # JGit's pack garbage collector probes ProcessHandle, unavailable before API 24
 # and unused here because auto gc is disabled.

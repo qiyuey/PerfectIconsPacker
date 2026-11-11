@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -19,13 +18,10 @@ import top.yukonga.miuix.kmp.basic.SmallTitle
  */
 @Composable
 fun SectionLabel(text: String, modifier: Modifier = Modifier) {
-    SmallTitle(
-        text = text,
-        modifier = modifier.offset(x = -pageHorizontalMargin()),
-    )
+    PageSectionTitle(text, modifier, insidePage = true)
 }
 
-private val SectionContentMargin = PaddingValues(16.dp)
+private val SectionContentMargin = PaddingValues(PageDesign.cardPadding)
 
 /**
  * One section of a page: an optional [SmallTitle] label above a [Card] grouping
@@ -37,10 +33,10 @@ private val SectionContentMargin = PaddingValues(16.dp)
  */
 @Composable
 fun SectionCard(
-    title: String? = null,
     modifier: Modifier = Modifier,
+    title: String? = null,
     padded: Boolean = true,
-    contentSpacing: Dp = 4.dp,
+    contentSpacing: Dp = PageDesign.relatedGap,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {

@@ -6,15 +6,7 @@ import java.io.File
 object RepoPaths {
     fun root(context: Context): File = File(context.filesDir, "repo")
 
-    fun customRoot(context: Context): File = File(context.filesDir, "custom")
-
-    fun buildsRoot(context: Context): File = File(context.filesDir, "builds")
-
-    /**
-     * Extracts the bundled HyperOS 4 mask once and returns it. The file lives in
-     * the custom root so users can inspect or replace it through SAF, but the
-     * original asset is copied verbatim.
-     */
+    /** Returns the bundled HyperOS 4 mask in app-private storage. */
     fun defaultTransformConfig(context: Context): File {
         val target = File(context.filesDir, "defaults/transform_config.xml")
         if (target.isFile) return target
