@@ -16,10 +16,30 @@ umask 077
 mkdir -p "$base/releases"
 chmod 700 "$base"
 mount_id() { awk -v p="$1" '$5==p {print $1}' /proc/self/mountinfo; }
+mount_children() { awk -v p="$1/" 'index($5,p)==1 {print $1}' /proc/self/mountinfo; }
+# Detach only a recorded mount, never an unknown mount or its children.
+# Android services may retain open ZIPs after the launcher has stopped.
+detach_owned() {
+    target=$1
+    expected=$(awk -v p="$target" '$2==p {print $1}' "$base/mounts")
+    [ -n "$expected" ] && [ "$(mount_id "$target")" = "$expected" ] || return 1
+    [ -z "$(mount_children "$target")" ] || return 1
+    if ! umount "$target" 2>/dev/null; then
+        # Recheck ownership before the fallback; never force unmount or kill holders.
+        [ "$(mount_id "$target")" = "$expected" ] || return 1
+        [ -z "$(mount_children "$target")" ] || return 1
+        umount -l "$target" || return 1
+        echo "旧图标挂载已分离，待占用进程释放后自动回收：$target"
+    fi
+    [ -z "$(mount_id "$target")" ]
+}
 owned() {
     [ -f "$base/boot" ] && [ "$(cat "$base/boot")" = "$boot" ] && [ -s "$base/mounts" ] || return 1
     [ "$(wc -l < "$base/mounts")" -eq 3 ] || return 1
-    while read -r number target; do [ "$(mount_id "$target")" = "$number" ] || return 1; done < "$base/mounts"
+    while read -r number target; do
+        [ "$(mount_id "$target")" = "$number" ] || return 1
+        [ -z "$(mount_children "$target")" ] || return 1
+    done < "$base/mounts"
 }
 refresh() {
     pm clear --user 0 --cache-only com.miui.home | grep -q '^Success' || fail '无法仅清理桌面缓存。'
@@ -47,17 +67,17 @@ elif [ "$mode" = apply ]; then
 fi
 
 # Check every existing mount, including nested mounts created by other tools.
-existing=$(awk '$5=="/product/media/theme/default" || index($5,"/product/media/theme/default/")==1 || $5=="/product/media/theme/miui_mod_icons" {print $1}' /proc/self/mountinfo)
+existing=$(awk '$5=="/product/media/theme/default" || index($5,"/product/media/theme/default/")==1 || $5=="/product/media/theme/miui_mod_icons" || index($5,"/product/media/theme/miui_mod_icons/")==1 {print $1}' /proc/self/mountinfo)
 if [ -n "$existing" ]; then
     owned || fail '存在其他工具的图标挂载，请先从原工具撤销后再应用。'
     if [ "$mode" = reapply ]; then refresh; exit 0; fi
     # Stop only the launcher. Unrelated apps holding icon resources are not killed.
     am force-stop com.miui.home
-    if ! umount /product/media/theme/default; then
+    if ! detach_owned /product/media/theme/default; then
         am start -a android.intent.action.MAIN -c android.intent.category.HOME >/dev/null
-        fail '图标资源被应用占用，请退出相关应用后重试。'
+        fail '无法安全撤销图标挂载，已保留状态，请查看日志。'
     fi
-    if ! umount /product/media/theme/miui_mod_icons; then
+    if ! detach_owned /product/media/theme/miui_mod_icons; then
         mount --bind "$stage/default" /product/media/theme/default
         mount_id /product/media/theme/default | while read -r number; do
             awk -v id="$number" '$2!="/product/media/theme/default" {print} END {print id " /product/media/theme/default"}' "$base/mounts" > "$base/mounts.new"
@@ -66,7 +86,7 @@ if [ -n "$existing" ]; then
         am start -a android.intent.action.MAIN -c android.intent.category.HOME >/dev/null
         fail '单张图标资源被占用，已恢复原挂载。'
     fi
-    umount "$stage" || fail '无法释放旧合并目录，状态已保留。'
+    detach_owned "$stage" || fail '无法释放旧合并目录，状态已保留。'
     rm -f "$base/boot" "$base/mounts"
 fi
 if [ "$mode" = restore ]; then
@@ -87,7 +107,7 @@ rollback() {
         reverse=$(awk '{a[NR]=$0} END {for(i=NR;i>0;i--)print a[i]}' "$base/mounts")
         if [ -n "$reverse" ]; then
             printf '%s\n' "$reverse" | while read -r number target; do
-                [ "$(mount_id "$target")" = "$number" ] && umount "$target" || exit 1
+                [ "$(mount_id "$target")" = "$number" ] && detach_owned "$target" || exit 1
             done || { rmdir /data/adb/perfecticons-live.lock; echo '回滚未完成，已保留状态。' >&2; exit "$result"; }
         fi
         rm -f "$base/mounts" "$base/boot"

@@ -26,7 +26,9 @@
 
 Application使用FLAG_MOUNT_MASTER；脚本确认UID0与PID1挂载namespace相同。资源复制到/data/adb/perfecticons-live/releases/<UUID>/theme、归属root并设置system_file标签；临时组装目录随后清理。已挂载的资源不自动删除。
 
-tmpfs合并ROM原资源与上游资源后bind两个系统目录；保存boot和三个mount ID。其他工具挂载阻止应用；仅撤销自身挂载，默认遇EBUSY停止，不强停其他应用、不force/lazy卸载。异常回滚保留未能撤销的状态。
+tmpfs合并ROM原资源与上游资源后bind两个系统目录；保存boot和三个mount ID。其他工具挂载（包括子挂载）阻止应用；仅撤销记录中ID匹配且没有子挂载的自身挂载。普通卸载失败后再次核验ID与子挂载，再以lazy卸载分离旧资源；系统进程已打开的文件待引用释放后由内核回收，新访问使用恢复后的系统资源或新挂载。不强停其他应用、不force卸载、不删除仍可能被引用的release。恢复、替换和异常回滚共用该逻辑；失败保留未能撤销的状态。
+
+离线挂载回归运行`python tools/test_live_deploy.py`（Windows使用`py -3`），以fake命令执行实际脚本中的卸载函数，覆盖正常卸载、占用回退、未知/叠加/子挂载拒绝、回退失败与挂载ID变化，不需要root或连接手机。
 
 仅清com.miui.home缓存并重启桌面进程；不清布局、数据库、设置或全局缓存，不重启手机。重启后由用户重新取得临时root，再重新应用保存资源；不承诺自动开机挂载。
 
