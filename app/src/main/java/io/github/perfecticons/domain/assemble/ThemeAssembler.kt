@@ -7,16 +7,22 @@ import io.github.perfecticons.domain.model.IconId
 import io.github.perfecticons.domain.model.StaticIcon
 import java.io.File
 
-/** Assembles only upstream HyperOS 4 resources and the bundled mask. */
+/** Assembles HyperOS 4 resources with the bundled mask and Telegram override. */
 class ThemeAssembler(
     private val snapshotDir: File,
     private val defaultTransformConfig: File,
+    private val telegramDynamicIcon: File? = null,
 ) {
     fun assemble(styles: Set<String>): AssembledTheme {
         val staticIcons = linkedMapOf<String, StaticIcon>()
         val flatIcons = linkedMapOf<String, String>()
         val dynamicIcons = linkedMapOf<String, DynamicIcon>()
         collectUpstream(styles, staticIcons, flatIcons, dynamicIcons)
+        telegramDynamicIcon?.let { directory ->
+            for (id in telegramIds) {
+                dynamicIcons[id] = DynamicIcon(id, directory.path)
+            }
+        }
 
         return AssembledTheme(
             staticIcons = staticIcons.values.toList(),
@@ -48,7 +54,7 @@ class ThemeAssembler(
                         entry.isDirectory -> readStatic(entry)?.let { staticIcons[entry.name] = it }
                         entry.isFile && entry.extension.equals("png", ignoreCase = true) -> {
                             val id = entry.nameWithoutExtension
-                            if (IconId.isValid(id)) flatIcons[id] = entry.path
+                            if (shouldAssemble(id)) flatIcons[id] = entry.path
                         }
                     }
                 }
@@ -57,7 +63,7 @@ class ThemeAssembler(
             val themeDynamic = File(themeRoot, Paths.DYNAMIC_DIR)
             if (themeDynamic.isDirectory) {
                 themeDynamic.listFiles().orEmpty().filter { it.isDirectory }.forEach { dir ->
-                    if (IconId.isValid(dir.name) && File(dir, "config.xml").isFile) {
+                    if (shouldAssemble(dir.name) && File(dir, "config.xml").isFile) {
                         dynamicIcons[dir.name] = DynamicIcon(dir.name, dir.path)
                     }
                 }
@@ -70,7 +76,7 @@ class ThemeAssembler(
         )
         if (commonDynamic.isDirectory) {
             commonDynamic.listFiles().orEmpty().filter { it.isDirectory }.forEach { dir ->
-                if (IconId.isValid(dir.name) && File(dir, "config.xml").isFile) {
+                if (shouldAssemble(dir.name) && File(dir, "config.xml").isFile) {
                     dynamicIcons.putIfAbsent(dir.name, DynamicIcon(dir.name, dir.path))
                 }
             }
@@ -78,11 +84,17 @@ class ThemeAssembler(
     }
 
     private fun readStatic(dir: File): StaticIcon? {
-        if (!IconId.isValid(dir.name)) return null
+        if (!shouldAssemble(dir.name)) return null
         val background = File(dir, "0.png")
         val foreground = File(dir, "1.png")
         if (!background.isFile || !foreground.isFile) return null
         return StaticIcon(dir.name, background.path, foreground.path)
     }
 
+    private fun shouldAssemble(id: String): Boolean =
+        id !in telegramIds && IconId.isValid(id)
+
+    private companion object {
+        val telegramIds = setOf("org.telegram.messenger", "org.telegram.messenger.web")
+    }
 }

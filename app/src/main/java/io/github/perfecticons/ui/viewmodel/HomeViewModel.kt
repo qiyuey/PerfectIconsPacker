@@ -98,23 +98,29 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
             runCatchingCancellable {
                 withContext(Dispatchers.IO) {
-                    val source = if (mode == "apply") {
-                        val styles = IconTheme.styles
-                        val snapshot = repository.snapshot()
-                        check(snapshot != null && snapshot.styles.toSet() == styles) { "请先检查更新，同步 HyperOS4 图标资源。" }
-                        val release = File(getApplication<Application>().filesDir, "deployments/${UUID.randomUUID()}/theme")
-                        RepoLock.snapshot.withLock {
-                            log("准备官方图标资源")
-                            val theme = ThemeAssembler(repository.snapshotDir, RepoPaths.defaultTransformConfig(getApplication())).assemble(styles)
-                            io.github.perfecticons.domain.build.DeploymentResources(theme).write(release) { written, total ->
-                                if (written % 500 == 0) log("生成图标 $written/$total")
+                    val app = getApplication<Application>()
+                    val workspace = if (mode == "apply") File(app.filesDir, "deployments/${UUID.randomUUID()}") else null
+                    try {
+                        val source = workspace?.let {
+                            val styles = IconTheme.styles
+                            val snapshot = repository.snapshot()
+                            check(snapshot != null && snapshot.styles.toSet() == styles) { "请先检查更新，同步 HyperOS4 图标资源。" }
+                            val release = File(it, "theme")
+                            val telegram = RepoPaths.copyTelegramDynamicIcon(app, File(it, "telegram"))
+                            RepoLock.snapshot.withLock {
+                                log("准备官方图标资源")
+                                val theme = ThemeAssembler(repository.snapshotDir, RepoPaths.defaultTransformConfig(app), telegram).assemble(styles)
+                                io.github.perfecticons.domain.build.DeploymentResources(theme).write(release) { written, total ->
+                                    if (written % 500 == 0) log("生成图标 $written/$total")
+                                }
+                                log("资源就绪：静态 ${theme.staticCount} · 动态 ${theme.dynamicCount}")
                             }
-                            log("资源就绪：静态 ${theme.staticCount} · 动态 ${theme.dynamicCount}")
+                            release
                         }
-                        release
-                    } else null
-                    try { RootDeployer(getApplication()).run(mode, source, ::log) }
-                    finally { source?.parentFile?.deleteRecursively() }
+                        RootDeployer(app).run(mode, source, ::log)
+                    } finally {
+                        workspace?.deleteRecursively()
+                    }
                 }
             }.onSuccess {
                 _state.value = _state.value.copy(isBuilding = false, applied = true)

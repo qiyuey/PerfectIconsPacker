@@ -34,4 +34,46 @@ class ThemeAssemblerEdgeCaseTest {
         ZipFile(File(output, "default/dynamicicons")).use { assertNotNull(it.getEntry("layer_animating_icons/com.clock/config.xml")) }
         assertTrue(File(output, "miui_mod_icons/com.flat.png").isFile)
     }
+
+    @Test fun `Telegram overrides are excluded from cached upstream resources`() {
+        val snapshot = temp.newFolder("snapshot")
+        val ids = listOf("org.telegram.messenger", "org.telegram.messenger.web", "com.other")
+        for (id in ids) {
+            val resources = listOf(
+                "icons/$id/0.png",
+                "icons/$id/1.png",
+                "themes/HyperOS4/icons/$id/0.png",
+                "themes/HyperOS4/icons/$id/1.png",
+                "themes/HyperOS4/icons/$id.png",
+                "themes/HyperOS4/layer_animating_icons/$id/config.xml",
+                "themes/common/layer_animating_icons/$id/config.xml",
+            )
+            for (path in resources) {
+                File(snapshot, path).apply {
+                    parentFile?.mkdirs()
+                    writeText(path)
+                }
+            }
+        }
+        val assembler = ThemeAssembler(snapshot, temp.newFile("mask.xml"))
+        for (styles in listOf(setOf("HyperOS4"), emptySet())) {
+            val theme = assembler.assemble(styles)
+            assertEquals(listOf("com.other"), theme.staticIcons.map { it.id })
+            assertEquals(listOf("com.other"), theme.dynamicIcons.map { it.id })
+            assertEquals(if (styles.isEmpty()) emptySet() else setOf("com.other"), theme.flatIcons.keys)
+        }
+
+        val bundled = temp.newFolder("telegram")
+        File(bundled, "config.xml").writeText("bundled Telegram")
+        val theme = ThemeAssembler(snapshot, temp.newFile("bundled-mask.xml"), bundled)
+            .assemble(setOf("HyperOS4"))
+        val output = File(temp.root, "theme")
+        DeploymentResources(theme).write(output)
+        ZipFile(File(output, "default/dynamicicons")).use { archive ->
+            for (id in ids.take(2)) {
+                val config = archive.getEntry("layer_animating_icons/$id/config.xml")
+                assertEquals("bundled Telegram", archive.getInputStream(config).reader().use { it.readText() })
+            }
+        }
+    }
 }
