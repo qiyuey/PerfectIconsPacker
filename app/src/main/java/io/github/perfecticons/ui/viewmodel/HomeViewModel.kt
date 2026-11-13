@@ -106,10 +106,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                             val snapshot = repository.snapshot()
                             check(snapshot != null && snapshot.styles.toSet() == styles) { "请先检查更新，同步 HyperOS4 图标资源。" }
                             val release = File(it, "theme")
-                            val telegram = RepoPaths.copyTelegramDynamicIcon(app, File(it, "telegram"))
+                            val bundledIcons = RepoPaths.copyBundledDynamicIcons(app, File(it, "bundled-icons"))
                             RepoLock.snapshot.withLock {
                                 log("准备官方图标资源")
-                                val theme = ThemeAssembler(repository.snapshotDir, RepoPaths.defaultTransformConfig(app), telegram).assemble(styles)
+                                val theme = ThemeAssembler(repository.snapshotDir, RepoPaths.defaultTransformConfig(app), bundledIcons).assemble(styles)
                                 io.github.perfecticons.domain.build.DeploymentResources(theme).write(release) { written, total ->
                                     if (written % 500 == 0) log("生成图标 $written/$total")
                                 }

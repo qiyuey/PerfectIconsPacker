@@ -7,21 +7,19 @@ import io.github.perfecticons.domain.model.IconId
 import io.github.perfecticons.domain.model.StaticIcon
 import java.io.File
 
-/** Assembles HyperOS 4 resources with the bundled mask and Telegram override. */
+/** Assembles HyperOS 4 resources with the bundled mask and dynamic icons. */
 class ThemeAssembler(
     private val snapshotDir: File,
     private val defaultTransformConfig: File,
-    private val telegramDynamicIcon: File? = null,
+    private val bundledDynamicIcons: Map<String, File> = emptyMap(),
 ) {
     fun assemble(styles: Set<String>): AssembledTheme {
         val staticIcons = linkedMapOf<String, StaticIcon>()
         val flatIcons = linkedMapOf<String, String>()
         val dynamicIcons = linkedMapOf<String, DynamicIcon>()
         collectUpstream(styles, staticIcons, flatIcons, dynamicIcons)
-        telegramDynamicIcon?.let { directory ->
-            for (id in telegramIds) {
-                dynamicIcons[id] = DynamicIcon(id, directory.path)
-            }
+        for ((id, directory) in bundledDynamicIcons) {
+            dynamicIcons[id] = DynamicIcon(id, directory.path)
         }
 
         return AssembledTheme(
@@ -92,9 +90,5 @@ class ThemeAssembler(
     }
 
     private fun shouldAssemble(id: String): Boolean =
-        id !in telegramIds && IconId.isValid(id)
-
-    private companion object {
-        val telegramIds = setOf("org.telegram.messenger", "org.telegram.messenger.web")
-    }
+        id !in bundledDynamicIcons && IconId.isValid(id)
 }

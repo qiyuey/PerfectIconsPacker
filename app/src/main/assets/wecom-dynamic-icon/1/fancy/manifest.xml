@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <FolmeCommand target="markers" states="'state_end'" command="setTo" config="'state_config'" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <FolmeCommand target="markers" states="'state_init'" command="setTo" config="'state_config'" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <FolmeCommand target="markers" states="'state_init','state_end'" command="fromTo" config="'state_config'" />
+  </Trigger>
+ </ExternalCommands>
+ <FolmeState name="state_init" rotation="-360" />
+ <FolmeState name="state_end" rotation="0" />
+ <FolmeConfig name="state_config" property="rotation" ease="6,650" />
+ <Group>
+  <Image src="bubble.png" />
+  <Image name="markers" src="markers.png" pivotX="281" pivotY="264" folmeMode="true" />
+ </Group>
+</Icon>

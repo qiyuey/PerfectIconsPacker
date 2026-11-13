@@ -10,7 +10,7 @@
 
 `ThemeAssembler` 只合并快照中的基础与主题图标，使用应用内置HyperOS4蒙版。不读取旧custom目录。`DeploymentResources` 生成独立default/icons、default/dynamicicons与miui_mod_icons/*.png。内层ZIP由ThemeZipWriter校验路径、保留图片字节。自定义存储、导入器、禁用/覆盖/附加逻辑、SAF Provider、Module/MTZ导出及其专用测试均已移除；不删除设备上的历史文件。
 
-组装时跳过 Telegram 两个包名的上游静态、单张 PNG 和动态资源，向 `default/dynamicicons` 写入应用内置的动态图标。图层取自 Telegram Android 13.2.2 默认自适应图标，返回桌面时沿用上游 Telegram 动画。升级后点击「应用图标」可用已有缓存重新生成部署资源，「重新应用」会复用上一次保存的资源。
+组装时跳过 Telegram 两个包名、企业微信和富途牛牛的包名与桌面入口对应的上游静态、单张 PNG 和动态资源，向 `default/dynamicicons` 写入应用内置的动态图标。Telegram 使用 Android 13.2.2 默认自适应图标和纸飞机飞入动画。企业微信沿用上游静态分层的外观，返回桌面时四色标记绕中心旋转一圈。富途牛牛使用去掉全球角标的原版图层，返回桌面时牛头从左下滑回原位，独立牛角跟随归位，最后眨眼一次。升级后点击「应用图标」可用已有缓存重新生成部署资源，「重新应用」会复用上一次保存的资源。
 
 ## Liquid Glass 导航
 
