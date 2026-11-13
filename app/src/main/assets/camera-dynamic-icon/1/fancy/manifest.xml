@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="mark" command="play(690,690)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="mark" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="mark" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="mark" src="mark.png" pivotX="182" pivotY="192">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="mark.png" x="0" y="0" />
+   <Source time="145" src="iris-060.png" x="0" y="0" />
+   <Source time="162" src="iris-080.png" x="0" y="0" />
+   <Source time="179" src="iris-100.png" x="0" y="0" />
+   <Source time="195" src="iris-120.png" x="0" y="0" />
+   <Source time="212" src="iris-140.png" x="0" y="0" />
+   <Source time="229" src="iris-160.png" x="0" y="0" />
+   <Source time="246" src="iris-180.png" x="0" y="0" />
+   <Source time="263" src="iris-200.png" x="0" y="0" />
+   <Source time="279" src="iris-220.png" x="0" y="0" />
+   <Source time="329" src="iris-240.png" x="0" y="0" />
+   <Source time="378" src="iris-260.png" x="0" y="0" />
+   <Source time="395" src="iris-280.png" x="0" y="0" />
+   <Source time="412" src="iris-300.png" x="0" y="0" />
+   <Source time="428" src="iris-320.png" x="0" y="0" />
+   <Source time="445" src="iris-340.png" x="0" y="0" />
+   <Source time="462" src="iris-360.png" x="0" y="0" />
+   <Source time="479" src="iris-380.png" x="0" y="0" />
+   <Source time="496" src="iris-400.png" x="0" y="0" />
+   <Source time="512" src="iris-420.png" x="0" y="0" />
+   <Source time="529" src="iris-440.png" x="0" y="0" />
+   <Source time="546" src="iris-460.png" x="0" y="0" />
+   <Source time="563" src="iris-480.png" x="0" y="0" />
+   <Source time="580" src="iris-500.png" x="0" y="0" />
+   <Source time="596" src="iris-520.png" x="0" y="0" />
+   <Source time="613" src="iris-540.png" x="0" y="0" />
+   <Source time="630" src="iris-560.png" x="0" y="0" />
+   <Source time="647" src="iris-580.png" x="0" y="0" />
+   <Source time="675" src="mark.png" x="0" y="0" />
+   <Source time="690" src="mark.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

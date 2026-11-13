@@ -1,26 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
- <!-- control -->
  <ExternalCommands>
-  <!-- 首次使用主题、解锁、返回桌面连续按home键切屏时，将动画播放到最后一帧 -->
   <Trigger action="init,present,back_home_cancel">
-   <FolmeCommand target="icon" states="'state_end'" command="setTo" config="'state_config'" />
+   <AnimationCommand target="plane" command="play(585,585)" />
+   <AnimationCommand target="ring" command="play(620,620)" />
   </Trigger>
-  <!-- 退出APP返回桌面的瞬间 -->
   <Trigger action="back_home_start">
-   <FolmeCommand target="icon" states="'state_init'" command="setTo" config="'state_config'"/>
+   <AnimationCommand target="plane" command="play(0,0)" />
+   <AnimationCommand target="ring" command="play(0,0)" />
   </Trigger>
-  <!-- 退出APP回到桌面 -->
   <Trigger action="back_home_finish">
-   <FolmeCommand target="icon" states="'state_init','state_end'" command="fromTo" config="'state_config'" />
+   <AnimationCommand target="plane" command="play" />
+   <AnimationCommand target="ring" command="play" />
   </Trigger>
  </ExternalCommands>
- <!-- module -->
- <FolmeState name="state_init" x="-174" y="174" />
- <FolmeState name="state_end" x="0" y="0" />
- <FolmeConfig name="state_config" property="x,y" ease="-2,0.6,1" fromSpeed="0"/>
- <!-- view -->
- <Group>
-  <Image name="icon"  src="icon.png"  folmeMode="true" />
- </Group>
+ <Image name="ring" src="ring.png" pivotX="182" pivotY="182">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.58" />
+   <Item time="120" value="0.58" />
+   <Item time="270" value="0.83" />
+   <Item time="480" value="1.1" />
+   <Item time="620" value="1.16" />
+  </ScaleAnimation>
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="120" a="0" />
+   <Alpha time="225" a="235" />
+   <Alpha time="345" a="185" />
+   <Alpha time="550" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="plane" src="icon.png">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="-96" y="60" easeType="SineEaseOut" />
+   <Item time="585" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
 </Icon>

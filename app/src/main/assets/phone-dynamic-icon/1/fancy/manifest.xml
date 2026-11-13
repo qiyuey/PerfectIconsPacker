@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="mark" command="play(620,620)" />
+   <AnimationCommand target="ring-wave-1" command="play(620,620)" />
+   <AnimationCommand target="ring-wave-2" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="mark" command="play(0,0)" />
+   <AnimationCommand target="ring-wave-1" command="play(0,0)" />
+   <AnimationCommand target="ring-wave-2" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="mark" command="play" />
+   <AnimationCommand target="ring-wave-1" command="play" />
+   <AnimationCommand target="ring-wave-2" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="mark" src="mark.png" pivotX="186" pivotY="180">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="3" />
+   <Item time="75" x="0" y="3" />
+   <Item time="215" x="-8" y="-24" />
+   <Item time="335" x="-5" y="-12" />
+   <Item time="475" x="0" y="2" />
+   <Item time="575" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="0" />
+   <Item time="75" value="-2" />
+   <Item time="215" value="-14" />
+   <Item time="335" value="-6" />
+   <Item time="475" value="2" />
+   <Item time="575" value="0" />
+   <Item time="620" value="0" />
+  </RotationAnimation>
+ </Image>
+ <Image name="ring-wave-1" src="ring-wave-1.png" pivotX="181" pivotY="171">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.93" />
+   <Item time="105" value="0.93" />
+   <Item time="225" value="1" />
+   <Item time="550" value="1.08" />
+   <Item time="620" value="1.08" />
+  </ScaleAnimation>
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="105" a="0" />
+   <Alpha time="165" a="255" />
+   <Alpha time="420" a="255" />
+   <Alpha time="580" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="ring-wave-2" src="ring-wave-2.png" pivotX="181" pivotY="171">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.93" />
+   <Item time="200" value="0.93" />
+   <Item time="320" value="1" />
+   <Item time="550" value="1.08" />
+   <Item time="620" value="1.08" />
+  </ScaleAnimation>
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="200" a="0" />
+   <Alpha time="260" a="255" />
+   <Alpha time="455" a="255" />
+   <Alpha time="600" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+</Icon>

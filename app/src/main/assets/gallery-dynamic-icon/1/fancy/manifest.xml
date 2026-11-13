@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="351" height="351" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="flower" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="flower" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="flower" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="flower" src="flower.png" pivotX="175" pivotY="172">
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="-110.0000" />
+   <Item time="60" value="-106.6831" />
+   <Item time="120" value="-97.1324" />
+   <Item time="180" value="-82.5000" />
+   <Item time="240" value="-64.5506" />
+   <Item time="300" value="-45.4494" />
+   <Item time="360" value="-27.5000" />
+   <Item time="420" value="-12.8676" />
+   <Item time="480" value="-3.3169" />
+   <Item time="540" value="0.0000" />
+   <Item time="620" value="0" />
+  </RotationAnimation>
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.7400" />
+   <Item time="60" value="0.7478" />
+   <Item time="120" value="0.7704" />
+   <Item time="180" value="0.8050" />
+   <Item time="240" value="0.8474" />
+   <Item time="300" value="0.8926" />
+   <Item time="360" value="0.9350" />
+   <Item time="420" value="0.9696" />
+   <Item time="480" value="0.9922" />
+   <Item time="540" value="1.0000" />
+   <Item time="620" value="1" />
+  </ScaleAnimation>
+ </Image>
+</Icon>

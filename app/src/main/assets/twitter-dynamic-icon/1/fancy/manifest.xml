@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="bird" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="bird" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="bird" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="bird" src="bird.png" pivotX="183" pivotY="183">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" easeType="SineEaseInOut" y="0" />
+   <Item time="110" easeType="SineEaseInOut" y="4" />
+   <Item time="325" easeType="SineEaseInOut" y="-13" />
+   <Item time="460" easeType="SineEaseInOut" y="-5" />
+   <Item time="620" easeType="SineEaseInOut" y="0" />
+  </PositionAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" easeType="SineEaseInOut" value="0" />
+   <Item time="110" easeType="SineEaseInOut" value="1" />
+   <Item time="325" easeType="SineEaseInOut" value="-2" />
+   <Item time="460" easeType="SineEaseInOut" value="1" />
+   <Item time="620" easeType="SineEaseInOut" value="0" />
+  </RotationAnimation>
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="bird.png" x="0" y="0" />
+   <Source time="35" src="wing01.png" x="0" y="0" />
+   <Source time="75" src="wing02.png" x="0" y="0" />
+   <Source time="120" src="wing03.png" x="0" y="0" />
+   <Source time="165" src="wing04.png" x="0" y="0" />
+   <Source time="215" src="wing05.png" x="0" y="0" />
+   <Source time="265" src="wing06.png" x="0" y="0" />
+   <Source time="320" src="wing07.png" x="0" y="0" />
+   <Source time="375" src="wing08.png" x="0" y="0" />
+   <Source time="440" src="wing09.png" x="0" y="0" />
+   <Source time="490" src="bird.png" x="0" y="0" />
+   <Source time="620" src="bird.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

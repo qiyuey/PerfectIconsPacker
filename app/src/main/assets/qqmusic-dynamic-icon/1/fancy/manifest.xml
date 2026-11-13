@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="384" height="384" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="note" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="note" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="note" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="note" src="icon.png" pivotX="191" pivotY="191">
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="-270" />
+   <Item time="90" value="-240" />
+   <Item time="190" value="-174" />
+   <Item time="300" value="-98" />
+   <Item time="420" value="-34" />
+   <Item time="530" value="-5" />
+   <Item time="600" value="0" />
+   <Item time="620" value="0" />
+  </RotationAnimation>
+ </Image>
+</Icon>

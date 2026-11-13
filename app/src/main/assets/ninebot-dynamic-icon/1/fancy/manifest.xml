@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="mark" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="mark" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="mark" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="mark" src="mark.png" pivotX="182" pivotY="182">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="-37" y="10" />
+   <Item time="130" x="-30" y="8" />
+   <Item time="290" x="16" y="-7" />
+   <Item time="460" x="5" y="-2" />
+   <Item time="570" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+</Icon>

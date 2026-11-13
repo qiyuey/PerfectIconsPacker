@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="lock" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="lock" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="lock" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="lock" src="mark.png">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="lock-000.png" x="0" y="0" />
+   <Source time="40" src="lock-040.png" x="0" y="0" />
+   <Source time="80" src="lock-080.png" x="0" y="0" />
+   <Source time="120" src="lock-120.png" x="0" y="0" />
+   <Source time="160" src="lock-160.png" x="0" y="0" />
+   <Source time="200" src="lock-200.png" x="0" y="0" />
+   <Source time="240" src="lock-240.png" x="0" y="0" />
+   <Source time="280" src="lock-280.png" x="0" y="0" />
+   <Source time="320" src="lock-320.png" x="0" y="0" />
+   <Source time="360" src="lock-360.png" x="0" y="0" />
+   <Source time="400" src="lock-400.png" x="0" y="0" />
+   <Source time="440" src="lock-440.png" x="0" y="0" />
+   <Source time="480" src="lock-480.png" x="0" y="0" />
+   <Source time="520" src="lock-520.png" x="0" y="0" />
+   <Source time="560" src="mark.png" x="0" y="0" />
+   <Source time="600" src="mark.png" x="0" y="0" />
+   <Source time="620" src="mark.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

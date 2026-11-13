@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="0" width="351" height="351" screenWidth="1080" useVariableUpdater="DateTime.Day">
+ <ExternalCommands>
+  <Trigger action="resume">
+   <FrameRateCommand rate="5" />
+   <FrameRateCommand rate="0" delay="10" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <FrameRateCommand rate="120" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <FrameRateCommand rate="0" delay="1000" />
+  </Trigger>
+  <Trigger action="init,present,back_home_cancel">
+   </Trigger>
+ </ExternalCommands>
+ <Image x="351/2" y="351/2+18" align="center" alignV="center" src="num.png" srcid="#date" cornerRadius="0" name="dateText">
+  </Image>
+</Icon>

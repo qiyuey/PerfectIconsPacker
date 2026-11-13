@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="joy" command="play(620,620)" />
+   <AnimationCommand target="blink" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="joy" command="play(0,0)" />
+   <AnimationCommand target="blink" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="joy" command="play" />
+   <AnimationCommand target="blink" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image src="body.png" />
+ <Image name="joy" src="joy.png" pivotX="205" pivotY="309">
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="0" easeType="SineEaseInOut" />
+   <Item time="65" value="-3" easeType="SineEaseInOut" />
+   <Item time="230" value="-12" easeType="SineEaseInOut" />
+   <Item time="365" value="0" easeType="SineEaseInOut" />
+   <Item time="620" value="0" easeType="SineEaseInOut" />
+  </RotationAnimation>
+ </Image>
+ <Image name="blink" src="blink.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="385" a="0" />
+   <Alpha time="435" a="255" />
+   <Alpha time="510" a="255" />
+   <Alpha time="585" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+</Icon>

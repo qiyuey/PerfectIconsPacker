@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="mark" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="mark" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="mark" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="mark" src="mark.png" pivotX="182" pivotY="182">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="mark.png" x="0" y="0" />
+   <Source time="25" src="shape1.png" x="0" y="0" />
+   <Source time="50" src="shape2.png" x="0" y="0" />
+   <Source time="75" src="shape3.png" x="0" y="0" />
+   <Source time="100" src="shape4.png" x="0" y="0" />
+   <Source time="125" src="shape5.png" x="0" y="0" />
+   <Source time="150" src="shape6.png" x="0" y="0" />
+   <Source time="175" src="shape7.png" x="0" y="0" />
+   <Source time="200" src="shape8.png" x="0" y="0" />
+   <Source time="225" src="shape9.png" x="0" y="0" />
+   <Source time="250" src="shape10.png" x="0" y="0" />
+   <Source time="275" src="shape11.png" x="0" y="0" />
+   <Source time="300" src="shape12.png" x="0" y="0" />
+   <Source time="325" src="shape13.png" x="0" y="0" />
+   <Source time="350" src="shape14.png" x="0" y="0" />
+   <Source time="375" src="shape15.png" x="0" y="0" />
+   <Source time="400" src="shape16.png" x="0" y="0" />
+   <Source time="425" src="shape17.png" x="0" y="0" />
+   <Source time="450" src="shape18.png" x="0" y="0" />
+   <Source time="475" src="shape19.png" x="0" y="0" />
+   <Source time="500" src="shape20.png" x="0" y="0" />
+   <Source time="525" src="shape21.png" x="0" y="0" />
+   <Source time="550" src="shape22.png" x="0" y="0" />
+   <Source time="575" src="shape23.png" x="0" y="0" />
+   <Source time="600" src="mark.png" x="0" y="0" />
+   <Source time="620" src="mark.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

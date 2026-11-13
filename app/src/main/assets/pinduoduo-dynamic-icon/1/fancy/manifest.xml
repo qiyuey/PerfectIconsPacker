@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="tile01" command="play(620,620)" />
+   <AnimationCommand target="tile02" command="play(620,620)" />
+   <AnimationCommand target="tile03" command="play(620,620)" />
+   <AnimationCommand target="tile04" command="play(620,620)" />
+   <AnimationCommand target="tile05" command="play(620,620)" />
+   <AnimationCommand target="tile06" command="play(620,620)" />
+   <AnimationCommand target="tile07" command="play(620,620)" />
+   <AnimationCommand target="tile08" command="play(620,620)" />
+   <AnimationCommand target="tile09" command="play(620,620)" />
+   <AnimationCommand target="tile10" command="play(620,620)" />
+   <AnimationCommand target="tile11" command="play(620,620)" />
+   <AnimationCommand target="tile12" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="tile01" command="play(0,0)" />
+   <AnimationCommand target="tile02" command="play(0,0)" />
+   <AnimationCommand target="tile03" command="play(0,0)" />
+   <AnimationCommand target="tile04" command="play(0,0)" />
+   <AnimationCommand target="tile05" command="play(0,0)" />
+   <AnimationCommand target="tile06" command="play(0,0)" />
+   <AnimationCommand target="tile07" command="play(0,0)" />
+   <AnimationCommand target="tile08" command="play(0,0)" />
+   <AnimationCommand target="tile09" command="play(0,0)" />
+   <AnimationCommand target="tile10" command="play(0,0)" />
+   <AnimationCommand target="tile11" command="play(0,0)" />
+   <AnimationCommand target="tile12" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="tile01" command="play" />
+   <AnimationCommand target="tile02" command="play" />
+   <AnimationCommand target="tile03" command="play" />
+   <AnimationCommand target="tile04" command="play" />
+   <AnimationCommand target="tile05" command="play" />
+   <AnimationCommand target="tile06" command="play" />
+   <AnimationCommand target="tile07" command="play" />
+   <AnimationCommand target="tile08" command="play" />
+   <AnimationCommand target="tile09" command="play" />
+   <AnimationCommand target="tile10" command="play" />
+   <AnimationCommand target="tile11" command="play" />
+   <AnimationCommand target="tile12" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Group>
+  <Image name="tile01" src="tile01.png" x="105" y="126">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="-67" y="-14" easeType="SineEaseInOut" />
+    <Item time="175" x="-32" y="-7" easeType="SineEaseInOut" />
+    <Item time="360" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile02" src="tile02.png" x="160" y="126">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="-49" y="-14" easeType="SineEaseInOut" />
+    <Item time="175" x="-24" y="-7" easeType="SineEaseInOut" />
+    <Item time="360" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile03" src="tile03.png" x="218" y="126">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="49" y="-14" easeType="SineEaseInOut" />
+    <Item time="58" x="49" y="-14" easeType="SineEaseInOut" />
+    <Item time="233" x="24" y="-7" easeType="SineEaseInOut" />
+    <Item time="418" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile04" src="tile04.png" x="274" y="126">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="67" y="-14" easeType="SineEaseInOut" />
+    <Item time="58" x="67" y="-14" easeType="SineEaseInOut" />
+    <Item time="233" x="32" y="-7" easeType="SineEaseInOut" />
+    <Item time="418" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile05" src="tile05.png" x="105" y="167">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="-67" y="-3" easeType="SineEaseInOut" />
+    <Item time="68" x="-67" y="-3" easeType="SineEaseInOut" />
+    <Item time="243" x="-32" y="-2" easeType="SineEaseInOut" />
+    <Item time="428" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile06" src="tile06.png" x="276" y="167">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="67" y="-3" easeType="SineEaseInOut" />
+    <Item time="92" x="67" y="-3" easeType="SineEaseInOut" />
+    <Item time="267" x="32" y="-2" easeType="SineEaseInOut" />
+    <Item time="452" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile07" src="tile07.png" x="105" y="207">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="-67" y="8" easeType="SineEaseInOut" />
+    <Item time="102" x="-67" y="8" easeType="SineEaseInOut" />
+    <Item time="277" x="-32" y="4" easeType="SineEaseInOut" />
+    <Item time="462" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile08" src="tile08.png" x="160" y="207">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="-49" y="8" easeType="SineEaseInOut" />
+    <Item time="102" x="-49" y="8" easeType="SineEaseInOut" />
+    <Item time="277" x="-24" y="4" easeType="SineEaseInOut" />
+    <Item time="462" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile09" src="tile09.png" x="220" y="207">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="49" y="8" easeType="SineEaseInOut" />
+    <Item time="160" x="49" y="8" easeType="SineEaseInOut" />
+    <Item time="335" x="24" y="4" easeType="SineEaseInOut" />
+    <Item time="520" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile10" src="tile10.png" x="274" y="207">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="67" y="8" easeType="SineEaseInOut" />
+    <Item time="160" x="67" y="8" easeType="SineEaseInOut" />
+    <Item time="335" x="32" y="4" easeType="SineEaseInOut" />
+    <Item time="520" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile11" src="tile11.png" x="162" y="248">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="-49" y="19" easeType="SineEaseInOut" />
+    <Item time="170" x="-49" y="19" easeType="SineEaseInOut" />
+    <Item time="345" x="-24" y="10" easeType="SineEaseInOut" />
+    <Item time="530" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="tile12" src="tile12.png" x="217" y="248">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" x="49" y="19" easeType="SineEaseInOut" />
+    <Item time="194" x="49" y="19" easeType="SineEaseInOut" />
+    <Item time="369" x="24" y="10" easeType="SineEaseInOut" />
+    <Item time="554" x="0" y="0" easeType="SineEaseInOut" />
+    <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+   </PositionAnimation>
+  </Image>
+  <Image name="center" src="center.png" x="190" y="178" />
+ </Group>
+</Icon>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="page" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="page" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="page" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="page" src="rest.png">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="rest.png" />
+   <Source time="34" src="page01.png" />
+   <Source time="68" src="page02.png" />
+   <Source time="102" src="page03.png" />
+   <Source time="136" src="page04.png" />
+   <Source time="170" src="page05.png" />
+   <Source time="204" src="page06.png" />
+   <Source time="238" src="page07.png" />
+   <Source time="272" src="page08.png" />
+   <Source time="306" src="page09.png" />
+   <Source time="340" src="page10.png" />
+   <Source time="374" src="page11.png" />
+   <Source time="408" src="page12.png" />
+   <Source time="442" src="page13.png" />
+   <Source time="476" src="page14.png" />
+   <Source time="510" src="page15.png" />
+   <Source time="550" src="rest.png" />
+   <Source time="620" src="rest.png" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

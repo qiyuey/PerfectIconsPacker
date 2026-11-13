@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="moving" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="moving" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="moving" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image src="base.png" />
+ <Image name="moving" src="moving.png">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="handle-000.png" x="0" y="0" />
+   <Source time="20" src="handle-020.png" x="0" y="0" />
+   <Source time="40" src="handle-040.png" x="0" y="0" />
+   <Source time="60" src="handle-060.png" x="0" y="0" />
+   <Source time="80" src="handle-080.png" x="0" y="0" />
+   <Source time="100" src="handle-100.png" x="0" y="0" />
+   <Source time="120" src="handle-120.png" x="0" y="0" />
+   <Source time="140" src="handle-140.png" x="0" y="0" />
+   <Source time="160" src="handle-160.png" x="0" y="0" />
+   <Source time="180" src="handle-180.png" x="0" y="0" />
+   <Source time="200" src="handle-200.png" x="0" y="0" />
+   <Source time="220" src="handle-220.png" x="0" y="0" />
+   <Source time="240" src="handle-240.png" x="0" y="0" />
+   <Source time="260" src="handle-260.png" x="0" y="0" />
+   <Source time="280" src="handle-280.png" x="0" y="0" />
+   <Source time="300" src="handle-300.png" x="0" y="0" />
+   <Source time="320" src="handle-320.png" x="0" y="0" />
+   <Source time="340" src="handle-340.png" x="0" y="0" />
+   <Source time="360" src="handle-360.png" x="0" y="0" />
+   <Source time="380" src="handle-380.png" x="0" y="0" />
+   <Source time="400" src="handle-400.png" x="0" y="0" />
+   <Source time="420" src="handle-420.png" x="0" y="0" />
+   <Source time="440" src="handle-440.png" x="0" y="0" />
+   <Source time="460" src="handle-460.png" x="0" y="0" />
+   <Source time="480" src="handle-480.png" x="0" y="0" />
+   <Source time="500" src="handle-500.png" x="0" y="0" />
+   <Source time="520" src="handle-520.png" x="0" y="0" />
+   <Source time="540" src="handle-540.png" x="0" y="0" />
+   <Source time="560" src="moving.png" x="0" y="0" />
+   <Source time="580" src="moving.png" x="0" y="0" />
+   <Source time="600" src="moving.png" x="0" y="0" />
+   <Source time="620" src="moving.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

@@ -3,26 +3,23 @@
  <ExternalCommands>
   <Trigger action="init,present,back_home_cancel">
    <FolmeCommand target="head" states="'state_end'" command="setTo" config="'state_config'" />
-   <FolmeCommand target="horn" states="'horn_end'" command="setTo" config="'horn_config'" />
+   <AnimationCommand target="horn" command="play(410,410)" />
    <AnimationCommand target="eye" command="play(0,0)" />
   </Trigger>
   <Trigger action="back_home_start">
    <FolmeCommand target="head" states="'state_init'" command="setTo" config="'state_config'" />
-   <FolmeCommand target="horn" states="'horn_init'" command="setTo" config="'horn_config'" />
+   <AnimationCommand target="horn" command="play(0,0)" />
    <AnimationCommand target="eye" command="play(0,0)" />
   </Trigger>
   <Trigger action="back_home_finish">
    <FolmeCommand target="head" states="'state_init','state_end'" command="fromTo" config="'state_config'" />
-   <FolmeCommand target="horn" states="'horn_init','horn_end'" command="fromTo" config="'horn_config'" />
+   <AnimationCommand target="horn" command="play" />
    <AnimationCommand target="eye" command="play" />
   </Trigger>
  </ExternalCommands>
  <FolmeState name="state_init" x="-54" y="27" />
  <FolmeState name="state_end" x="0" y="0" />
  <FolmeConfig name="state_config" property="x,y" ease="6,300" fromSpeed="0" />
- <FolmeState name="horn_init" x="-75" y="42" rotation="-22" />
- <FolmeState name="horn_end" x="0" y="0" rotation="0" />
- <FolmeConfig name="horn_config" property="x,y,rotation" ease="6,395" fromSpeed="0" />
  <Group>
   <Image name="eye" src="eye.png">
    <AlphaAnimation loop="false" initPause="true">
@@ -34,6 +31,13 @@
    </AlphaAnimation>
   </Image>
   <Image src="icon.png" name="head" folmeMode="true" />
-  <Image name="horn" src="horn.png" pivotX="254" pivotY="187" folmeMode="true" />
+  <Image name="horn" src="horn.png">
+   <PositionAnimation loop="false" initPause="true">
+    <Item x="-54" y="27" time="0" easeType="CubicEaseOut" />
+    <Item x="18" y="-35" time="230" easeType="SineEaseInOut" />
+    <Item x="-5" y="7" time="345" easeType="SineEaseInOut" />
+    <Item x="0" y="0" time="410" />
+   </PositionAnimation>
+  </Image>
  </Group>
 </Icon>

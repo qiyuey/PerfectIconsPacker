@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="324" height="324" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="bubble" command="play(620,620)" />
+   <AnimationCommand target="dot1" command="play(620,620)" />
+   <AnimationCommand target="dot2" command="play(620,620)" />
+   <AnimationCommand target="dot3" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="bubble" command="play(0,0)" />
+   <AnimationCommand target="dot1" command="play(0,0)" />
+   <AnimationCommand target="dot2" command="play(0,0)" />
+   <AnimationCommand target="dot3" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="bubble" command="play" />
+   <AnimationCommand target="dot1" command="play" />
+   <AnimationCommand target="dot2" command="play" />
+   <AnimationCommand target="dot3" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image src="logo.png" />
+ <Image name="bubble" src="bubble.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="255" />
+   <Alpha time="455" a="255" />
+   <Alpha time="545" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="dot1" src="dot.png" x="126" y="155">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="30" />
+   <Alpha time="35" a="30" />
+   <Alpha time="110" a="255" />
+   <Alpha time="165" a="255" />
+   <Alpha time="465" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="0" />
+   <Item time="35" x="0" y="0" />
+   <Item time="110" x="0" y="-9" />
+   <Item time="190" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+ <Image name="dot2" src="dot.png" x="153" y="155">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="30" />
+   <Alpha time="135" a="30" />
+   <Alpha time="210" a="255" />
+   <Alpha time="265" a="255" />
+   <Alpha time="465" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="0" />
+   <Item time="135" x="0" y="0" />
+   <Item time="210" x="0" y="-9" />
+   <Item time="290" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+ <Image name="dot3" src="dot.png" x="180" y="155">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="30" />
+   <Alpha time="235" a="30" />
+   <Alpha time="310" a="255" />
+   <Alpha time="365" a="255" />
+   <Alpha time="465" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="0" />
+   <Item time="235" x="0" y="0" />
+   <Item time="310" x="0" y="-9" />
+   <Item time="390" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+</Icon>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="north" command="play(620,620)" />
+   <AnimationCommand target="south" command="play(620,620)" />
+   <AnimationCommand target="west" command="play(620,620)" />
+   <AnimationCommand target="east" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="north" command="play(0,0)" />
+   <AnimationCommand target="south" command="play(0,0)" />
+   <AnimationCommand target="west" command="play(0,0)" />
+   <AnimationCommand target="east" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="north" command="play" />
+   <AnimationCommand target="south" command="play" />
+   <AnimationCommand target="west" command="play" />
+   <AnimationCommand target="east" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="north" src="north.png">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="-32" />
+   <Item time="90" x="0" y="-32" />
+   <Item time="480" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+ <Image name="south" src="south.png">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="32" />
+   <Item time="127" x="0" y="32" />
+   <Item time="502" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+ <Image name="west" src="west.png">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="-36" y="0" />
+   <Item time="164" x="-36" y="0" />
+   <Item time="524" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+ <Image name="east" src="east.png">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="36" y="0" />
+   <Item time="201" x="36" y="0" />
+   <Item time="546" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+ </Image>
+ <Image name="center" src="center.png" />
+</Icon>

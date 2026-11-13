@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="cyan" command="play(570,570)" />
+   <AnimationCommand target="pink" command="play(570,570)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="cyan" command="play(0,0)" />
+   <AnimationCommand target="pink" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="cyan" command="play" />
+   <AnimationCommand target="pink" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Group>
+  <Image name="cyan" src="cyan.png">
+   <PositionAnimation initPause="true" loop="false">
+    <Item x="0" y="0" time="0" />
+    <Item x="-42" y="-14" time="145" />
+    <Item x="-32" y="-11" time="270" />
+    <Item x="0" y="0" time="460" />
+    <Item x="0" y="0" time="570" />
+   </PositionAnimation>
+   <AlphaAnimation initPause="true" loop="false">
+    <Alpha a="0" time="0" />
+    <Alpha a="235" time="145" />
+    <Alpha a="205" time="270" />
+    <Alpha a="0" time="460" />
+    <Alpha a="0" time="570" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="pink" src="pink.png">
+   <PositionAnimation initPause="true" loop="false">
+    <Item x="0" y="0" time="0" />
+    <Item x="0" y="0" time="55" />
+    <Item x="42" y="14" time="200" />
+    <Item x="32" y="11" time="325" />
+    <Item x="0" y="0" time="515" />
+    <Item x="0" y="0" time="570" />
+   </PositionAnimation>
+   <AlphaAnimation initPause="true" loop="false">
+    <Alpha a="0" time="0" />
+    <Alpha a="0" time="55" />
+    <Alpha a="235" time="200" />
+    <Alpha a="205" time="325" />
+    <Alpha a="0" time="515" />
+    <Alpha a="0" time="570" />
+   </AlphaAnimation>
+  </Image>
+  <Image src="note.png" />
+ </Group>
+</Icon>

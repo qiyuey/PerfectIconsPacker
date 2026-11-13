@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="mark" command="play(620,620)" />
+   <AnimationCommand target="message-line-1" command="play(620,620)" />
+   <AnimationCommand target="message-line-2" command="play(620,620)" />
+   <AnimationCommand target="message-line-3" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="mark" command="play(0,0)" />
+   <AnimationCommand target="message-line-1" command="play(0,0)" />
+   <AnimationCommand target="message-line-2" command="play(0,0)" />
+   <AnimationCommand target="message-line-3" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="mark" command="play" />
+   <AnimationCommand target="message-line-1" command="play" />
+   <AnimationCommand target="message-line-2" command="play" />
+   <AnimationCommand target="message-line-3" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="mark" src="mark.png" pivotX="182" pivotY="197">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="23" />
+   <Item time="95" x="0" y="19" />
+   <Item time="255" x="0" y="-9" />
+   <Item time="410" x="0" y="2" />
+   <Item time="550" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.89" />
+   <Item time="95" value="0.91" />
+   <Item time="255" value="1.045" />
+   <Item time="410" value="0.99" />
+   <Item time="550" value="1" />
+   <Item time="620" value="1" />
+  </ScaleAnimation>
+ </Image>
+ <Image name="message-line-1" src="message-line-1.png" pivotX="126" pivotY="150">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.45" />
+   <Item time="145" value="0.45" />
+   <Item time="250" value="1" />
+   <Item time="620" value="1" />
+  </ScaleAnimation>
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="145" a="0" />
+   <Alpha time="225" a="245" />
+   <Alpha time="303" a="245" />
+   <Alpha time="560" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="message-line-2" src="message-line-2.png" pivotX="126" pivotY="173">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.45" />
+   <Item time="203" value="0.45" />
+   <Item time="308" value="1" />
+   <Item time="620" value="1" />
+  </ScaleAnimation>
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="203" a="0" />
+   <Alpha time="283" a="245" />
+   <Alpha time="361" a="245" />
+   <Alpha time="560" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="message-line-3" src="message-line-3.png" pivotX="126" pivotY="196">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="0.45" />
+   <Item time="261" value="0.45" />
+   <Item time="366" value="1" />
+   <Item time="620" value="1" />
+  </ScaleAnimation>
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="261" a="0" />
+   <Alpha time="341" a="245" />
+   <Alpha time="419" a="245" />
+   <Alpha time="560" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+</Icon>

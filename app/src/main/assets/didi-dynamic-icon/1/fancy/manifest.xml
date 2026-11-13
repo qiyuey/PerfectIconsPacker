@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="route" command="play(620,620)" />
+   <AnimationCommand target="mark" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="route" command="play(0,0)" />
+   <AnimationCommand target="mark" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="route" command="play" />
+   <AnimationCommand target="mark" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="route" src="route.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="105" a="255" />
+   <Alpha time="255" a="255" />
+   <Alpha time="500" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="mark" src="mark.png" pivotX="219" pivotY="222">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" easeType="SineEaseInOut" x="-83" y="55" />
+   <Item time="115" easeType="SineEaseInOut" x="-65" y="44" />
+   <Item time="245" easeType="SineEaseInOut" x="-26" y="1" />
+   <Item time="390" easeType="SineEaseInOut" x="13" y="-14" />
+   <Item time="510" easeType="SineEaseInOut" x="5" y="-4" />
+   <Item time="620" easeType="SineEaseInOut" x="0" y="0" />
+  </PositionAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" easeType="SineEaseInOut" value="-22" />
+   <Item time="115" easeType="SineEaseInOut" value="-16" />
+   <Item time="245" easeType="SineEaseInOut" value="-9" />
+   <Item time="390" easeType="SineEaseInOut" value="12" />
+   <Item time="510" easeType="SineEaseInOut" value="5" />
+   <Item time="620" easeType="SineEaseInOut" value="0" />
+  </RotationAnimation>
+ </Image>
+</Icon>

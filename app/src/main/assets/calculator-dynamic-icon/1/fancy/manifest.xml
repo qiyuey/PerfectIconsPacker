@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="moving" command="play(620,620)" />
+   <AnimationCommand target="operator1" command="play(620,620)" />
+   <AnimationCommand target="operator2" command="play(620,620)" />
+   <AnimationCommand target="operator3" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="moving" command="play(0,0)" />
+   <AnimationCommand target="operator1" command="play(0,0)" />
+   <AnimationCommand target="operator2" command="play(0,0)" />
+   <AnimationCommand target="operator3" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="moving" command="play" />
+   <AnimationCommand target="operator1" command="play" />
+   <AnimationCommand target="operator2" command="play" />
+   <AnimationCommand target="operator3" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image src="base.png" />
+ <Image name="moving" src="moving.png" pivotX="228" pivotY="235">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="1" />
+   <Item time="75" value="1" />
+   <Item time="205" value="0.69" />
+   <Item time="285" value="0.76" />
+   <Item time="405" value="1.18" />
+   <Item time="515" value="0.99" />
+   <Item time="590" value="1" />
+   <Item time="620" value="1" />
+  </ScaleAnimation>
+ </Image>
+ <Image name="operator1" src="operator1.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="225" a="0" />
+   <Alpha time="270" a="255" />
+   <Alpha time="322" a="255" />
+   <Alpha time="425" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="operator2" src="operator2.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="283" a="0" />
+   <Alpha time="328" a="255" />
+   <Alpha time="380" a="255" />
+   <Alpha time="483" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="operator3" src="operator3.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="341" a="0" />
+   <Alpha time="386" a="255" />
+   <Alpha time="438" a="255" />
+   <Alpha time="541" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+</Icon>

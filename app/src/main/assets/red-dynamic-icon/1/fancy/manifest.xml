@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="band01" command="play(620,620)" />
+   <AnimationCommand target="band02" command="play(620,620)" />
+   <AnimationCommand target="band03" command="play(620,620)" />
+   <AnimationCommand target="band04" command="play(620,620)" />
+   <AnimationCommand target="band05" command="play(620,620)" />
+   <AnimationCommand target="band06" command="play(620,620)" />
+   <AnimationCommand target="band07" command="play(620,620)" />
+   <AnimationCommand target="band08" command="play(620,620)" />
+   <AnimationCommand target="band09" command="play(620,620)" />
+   <AnimationCommand target="band10" command="play(620,620)" />
+   <AnimationCommand target="bookmark" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="band01" command="play(0,0)" />
+   <AnimationCommand target="band02" command="play(0,0)" />
+   <AnimationCommand target="band03" command="play(0,0)" />
+   <AnimationCommand target="band04" command="play(0,0)" />
+   <AnimationCommand target="band05" command="play(0,0)" />
+   <AnimationCommand target="band06" command="play(0,0)" />
+   <AnimationCommand target="band07" command="play(0,0)" />
+   <AnimationCommand target="band08" command="play(0,0)" />
+   <AnimationCommand target="band09" command="play(0,0)" />
+   <AnimationCommand target="band10" command="play(0,0)" />
+   <AnimationCommand target="bookmark" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="band01" command="play" />
+   <AnimationCommand target="band02" command="play" />
+   <AnimationCommand target="band03" command="play" />
+   <AnimationCommand target="band04" command="play" />
+   <AnimationCommand target="band05" command="play" />
+   <AnimationCommand target="band06" command="play" />
+   <AnimationCommand target="band07" command="play" />
+   <AnimationCommand target="band08" command="play" />
+   <AnimationCommand target="band09" command="play" />
+   <AnimationCommand target="band10" command="play" />
+   <AnimationCommand target="bookmark" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Group>
+  <Image name="band01" src="band01.png" x="87" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="100" a="255" />
+    <Alpha time="145" a="224" />
+    <Alpha time="208" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band02" src="band02.png" x="105" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="45" a="34" />
+    <Alpha time="145" a="255" />
+    <Alpha time="190" a="224" />
+    <Alpha time="253" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band03" src="band03.png" x="124" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="90" a="34" />
+    <Alpha time="190" a="255" />
+    <Alpha time="235" a="224" />
+    <Alpha time="298" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band04" src="band04.png" x="143" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="135" a="34" />
+    <Alpha time="235" a="255" />
+    <Alpha time="280" a="224" />
+    <Alpha time="343" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band05" src="band05.png" x="162" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="180" a="34" />
+    <Alpha time="280" a="255" />
+    <Alpha time="325" a="224" />
+    <Alpha time="388" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band06" src="band06.png" x="181" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="225" a="34" />
+    <Alpha time="325" a="255" />
+    <Alpha time="370" a="224" />
+    <Alpha time="433" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band07" src="band07.png" x="199" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="270" a="34" />
+    <Alpha time="370" a="255" />
+    <Alpha time="415" a="224" />
+    <Alpha time="478" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band08" src="band08.png" x="218" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="315" a="34" />
+    <Alpha time="415" a="255" />
+    <Alpha time="460" a="224" />
+    <Alpha time="523" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band09" src="band09.png" x="237" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="360" a="34" />
+    <Alpha time="460" a="255" />
+    <Alpha time="505" a="224" />
+    <Alpha time="568" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="band10" src="band10.png" x="256" y="144">
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="34" />
+    <Alpha time="405" a="34" />
+    <Alpha time="505" a="255" />
+    <Alpha time="550" a="224" />
+    <Alpha time="613" a="255" />
+    <Alpha time="620" a="255" />
+   </AlphaAnimation>
+  </Image>
+  <Image name="bookmark" src="bookmark.png" x="268" y="118" pivotX="11" pivotY="14">
+   <PositionAnimation loop="false" initPause="true">
+    <Item time="0" y="10" />
+    <Item time="345" y="10" />
+    <Item time="465" y="-4" />
+    <Item time="530" y="0" />
+    <Item time="620" y="0" />
+   </PositionAnimation>
+   <ScaleAnimation loop="false" initPause="true">
+    <Item time="0" value="0.65" />
+    <Item time="345" value="0.65" />
+    <Item time="465" value="1.1" />
+    <Item time="530" value="1" />
+    <Item time="620" value="1" />
+   </ScaleAnimation>
+   <AlphaAnimation loop="false" initPause="true">
+    <Alpha time="0" a="0" />
+    <Alpha time="345" a="0" />
+    <Alpha time="445" a="255" />
+    <Alpha time="515" a="255" />
+    <Alpha time="620" a="0" />
+   </AlphaAnimation>
+  </Image>
+ </Group>
+</Icon>

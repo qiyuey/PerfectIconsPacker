@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="351" height="351" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="scan" command="play(620,620)" />
+   <AnimationCommand target="beam" command="play(620,620)" />
+   <AnimationCommand target="flash" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="scan" command="play(0,0)" />
+   <AnimationCommand target="beam" command="play(0,0)" />
+   <AnimationCommand target="flash" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="scan" command="play" />
+   <AnimationCommand target="beam" command="play" />
+   <AnimationCommand target="flash" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="scan" src="scan.png">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="-58" easeType="SineEaseInOut" />
+   <Item time="365" x="0" y="63" easeType="SineEaseInOut" />
+   <Item time="455" x="0" y="36" easeType="SineEaseInOut" />
+   <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+  </PositionAnimation>
+ </Image>
+ <Image name="beam" src="beam.png">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="-58" easeType="SineEaseInOut" />
+   <Item time="365" x="0" y="63" easeType="SineEaseInOut" />
+   <Item time="455" x="0" y="36" easeType="SineEaseInOut" />
+   <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+  </PositionAnimation>
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="60" a="255" />
+   <Alpha time="355" a="255" />
+   <Alpha time="435" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image src="corners.png" />
+ <Image name="flash" src="flash.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="365" a="0" />
+   <Alpha time="415" a="230" />
+   <Alpha time="475" a="160" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+</Icon>

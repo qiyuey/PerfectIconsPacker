@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="mark" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="mark" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="mark" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="mark" src="mark.png" pivotX="182" pivotY="181">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="mark.png" x="0" y="0" />
+   <Source time="60" src="bay-060.png" x="0" y="0" />
+   <Source time="105" src="bay-105.png" x="0" y="0" />
+   <Source time="150" src="bay-150.png" x="0" y="0" />
+   <Source time="195" src="bay-195.png" x="0" y="0" />
+   <Source time="240" src="bay-240.png" x="0" y="0" />
+   <Source time="285" src="bay-285.png" x="0" y="0" />
+   <Source time="330" src="bay-330.png" x="0" y="0" />
+   <Source time="375" src="bay-375.png" x="0" y="0" />
+   <Source time="420" src="bay-420.png" x="0" y="0" />
+   <Source time="465" src="bay-465.png" x="0" y="0" />
+   <Source time="510" src="bay-510.png" x="0" y="0" />
+   <Source time="555" src="bay-555.png" x="0" y="0" />
+   <Source time="600" src="mark.png" x="0" y="0" />
+   <Source time="620" src="mark.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="351" height="351" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="upper" command="play(620,620)" />
+   <AnimationCommand target="lower" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="upper" command="play(0,0)" />
+   <AnimationCommand target="lower" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="upper" command="play" />
+   <AnimationCommand target="lower" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="upper" src="upper.png" pivotX="176" pivotY="146">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="-13" y="-43" easeType="SineEaseInOut" />
+   <Item time="165" x="-10" y="-30" easeType="SineEaseInOut" />
+   <Item time="390" x="0" y="5" easeType="SineEaseInOut" />
+   <Item time="510" x="0" y="-2" easeType="SineEaseInOut" />
+   <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+  </PositionAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="-12" easeType="SineEaseInOut" />
+   <Item time="165" value="-8" easeType="SineEaseInOut" />
+   <Item time="390" value="0" easeType="SineEaseInOut" />
+   <Item time="510" value="0" easeType="SineEaseInOut" />
+   <Item time="620" value="0" easeType="SineEaseInOut" />
+  </RotationAnimation>
+ </Image>
+ <Image name="lower" src="lower.png" pivotX="176" pivotY="214">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="13" y="38" easeType="SineEaseInOut" />
+   <Item time="165" x="10" y="28" easeType="SineEaseInOut" />
+   <Item time="390" x="0" y="-4" easeType="SineEaseInOut" />
+   <Item time="510" x="0" y="2" easeType="SineEaseInOut" />
+   <Item time="620" x="0" y="0" easeType="SineEaseInOut" />
+  </PositionAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="12" easeType="SineEaseInOut" />
+   <Item time="165" value="8" easeType="SineEaseInOut" />
+   <Item time="390" value="0" easeType="SineEaseInOut" />
+   <Item time="510" value="0" easeType="SineEaseInOut" />
+   <Item time="620" value="0" easeType="SineEaseInOut" />
+  </RotationAnimation>
+ </Image>
+</Icon>

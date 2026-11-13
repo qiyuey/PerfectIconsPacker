@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="mei" command="play(590,590)" />
+   <AnimationCommand target="tuan" command="play(590,590)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="mei" command="play(0,0)" />
+   <AnimationCommand target="tuan" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="mei" command="play" />
+   <AnimationCommand target="tuan" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image name="mei" src="mei.png" pivotX="161" pivotY="214">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="1.34" easeType="CubicEaseOut" />
+   <Item time="190" value="0.82" easeType="CubicEaseOut" />
+   <Item time="300" value="1.075" easeType="SineEaseInOut" />
+   <Item time="445" value="1" easeType="CubicEaseOut" />
+   <Item time="590" value="1" easeType="CubicEaseOut" />
+  </ScaleAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="-11" easeType="CubicEaseOut" />
+   <Item time="190" value="3.3" easeType="CubicEaseOut" />
+   <Item time="300" value="3.3" easeType="SineEaseInOut" />
+   <Item time="445" value="0" easeType="CubicEaseOut" />
+   <Item time="590" value="0" easeType="CubicEaseOut" />
+  </RotationAnimation>
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="-27" easeType="CubicEaseOut" />
+   <Item time="190" x="0" y="9" easeType="CubicEaseOut" />
+   <Item time="300" x="0" y="0" easeType="SineEaseInOut" />
+   <Item time="445" x="0" y="0" easeType="CubicEaseOut" />
+   <Item time="590" x="0" y="0" easeType="CubicEaseOut" />
+  </PositionAnimation>
+ </Image>
+ <Image name="tuan" src="tuan.png" pivotX="270" pivotY="214">
+  <ScaleAnimation loop="false" initPause="true">
+   <Item time="0" value="1.34" easeType="CubicEaseOut" />
+   <Item time="85" value="1.34" easeType="CubicEaseOut" />
+   <Item time="275" value="0.82" easeType="CubicEaseOut" />
+   <Item time="385" value="1.075" easeType="SineEaseInOut" />
+   <Item time="530" value="1" easeType="CubicEaseOut" />
+   <Item time="590" value="1" easeType="CubicEaseOut" />
+  </ScaleAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="11" easeType="CubicEaseOut" />
+   <Item time="85" value="11" easeType="CubicEaseOut" />
+   <Item time="275" value="-3.3" easeType="CubicEaseOut" />
+   <Item time="385" value="-3.3" easeType="SineEaseInOut" />
+   <Item time="530" value="0" easeType="CubicEaseOut" />
+   <Item time="590" value="0" easeType="CubicEaseOut" />
+  </RotationAnimation>
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="-27" easeType="CubicEaseOut" />
+   <Item time="85" x="0" y="-27" easeType="CubicEaseOut" />
+   <Item time="275" x="0" y="9" easeType="CubicEaseOut" />
+   <Item time="385" x="0" y="0" easeType="SineEaseInOut" />
+   <Item time="530" x="0" y="0" easeType="CubicEaseOut" />
+   <Item time="590" x="0" y="0" easeType="CubicEaseOut" />
+  </PositionAnimation>
+ </Image>
+</Icon>

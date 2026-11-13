@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="0" width="351" height="351" screenWidth="1080" useVariableUpdater="DateTime.Day">
+ <ExternalCommands>
+  <Trigger action="resume">
+   <FrameRateCommand rate="5" />
+   <FrameRateCommand rate="0" delay="10" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <FrameRateCommand rate="60" />
+   <AnimationCommand target="blinds" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <FrameRateCommand rate="0" delay="1000" />
+   <AnimationCommand target="blinds" command="play" />
+  </Trigger>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="blinds" command="play(620,620)" />
+  </Trigger>
+ </ExternalCommands>
+ <Text name="weekSize" pivotX="#weekSize.text_width/2" pivotY="#weekSize.text_height/2" scale="min(1,190/#weekSize.text_width)" x="351/2" y="351/2-72" align="center" alignV="center" size="44" fontFamily="mipro-semibold" color="#3482FF" textExp="formatDate('E',#time_sys)">
+  </Text>
+ <Image name="blinds" src="blinds-clear.png">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="blinds-000.png" x="0" y="0" />
+   <Source time="25" src="blinds-025.png" x="0" y="0" />
+   <Source time="50" src="blinds-050.png" x="0" y="0" />
+   <Source time="75" src="blinds-075.png" x="0" y="0" />
+   <Source time="100" src="blinds-100.png" x="0" y="0" />
+   <Source time="125" src="blinds-125.png" x="0" y="0" />
+   <Source time="150" src="blinds-150.png" x="0" y="0" />
+   <Source time="175" src="blinds-175.png" x="0" y="0" />
+   <Source time="200" src="blinds-200.png" x="0" y="0" />
+   <Source time="225" src="blinds-225.png" x="0" y="0" />
+   <Source time="250" src="blinds-250.png" x="0" y="0" />
+   <Source time="275" src="blinds-275.png" x="0" y="0" />
+   <Source time="300" src="blinds-300.png" x="0" y="0" />
+   <Source time="325" src="blinds-325.png" x="0" y="0" />
+   <Source time="350" src="blinds-350.png" x="0" y="0" />
+   <Source time="375" src="blinds-375.png" x="0" y="0" />
+   <Source time="400" src="blinds-400.png" x="0" y="0" />
+   <Source time="425" src="blinds-425.png" x="0" y="0" />
+   <Source time="450" src="blinds-450.png" x="0" y="0" />
+   <Source time="475" src="blinds-475.png" x="0" y="0" />
+   <Source time="500" src="blinds-500.png" x="0" y="0" />
+   <Source time="525" src="blinds-525.png" x="0" y="0" />
+   <Source time="550" src="blinds-550.png" x="0" y="0" />
+   <Source time="575" src="blinds-575.png" x="0" y="0" />
+   <Source time="600" src="blinds-clear.png" x="0" y="0" />
+   <Source time="620" src="blinds-clear.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>

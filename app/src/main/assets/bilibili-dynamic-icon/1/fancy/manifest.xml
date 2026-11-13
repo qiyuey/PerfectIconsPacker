@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+ <ExternalCommands>
+  <Trigger action="init,present,back_home_cancel">
+   <AnimationCommand target="moving" command="play(620,620)" />
+   <AnimationCommand target="screenLight" command="play(620,620)" />
+   <AnimationCommand target="wordmark" command="play(620,620)" />
+  </Trigger>
+  <Trigger action="back_home_start">
+   <AnimationCommand target="moving" command="play(0,0)" />
+   <AnimationCommand target="screenLight" command="play(0,0)" />
+   <AnimationCommand target="wordmark" command="play(0,0)" />
+  </Trigger>
+  <Trigger action="back_home_finish">
+   <AnimationCommand target="moving" command="play" />
+   <AnimationCommand target="screenLight" command="play" />
+   <AnimationCommand target="wordmark" command="play" />
+  </Trigger>
+ </ExternalCommands>
+ <Image src="base.png" />
+ <Image name="moving" src="moving.png" pivotX="182" pivotY="132">
+  <PositionAnimation loop="false" initPause="true">
+   <Item time="0" x="0" y="0" />
+   <Item time="90" x="-3" y="-9" />
+   <Item time="230" x="5" y="-11" />
+   <Item time="365" x="-2" y="-4" />
+   <Item time="550" x="0" y="0" />
+   <Item time="620" x="0" y="0" />
+  </PositionAnimation>
+  <RotationAnimation loop="false" initPause="true">
+   <Item time="0" value="-36" />
+   <Item time="90" value="-34" />
+   <Item time="230" value="34" />
+   <Item time="365" value="-13" />
+   <Item time="550" value="0" />
+   <Item time="620" value="0" />
+  </RotationAnimation>
+ </Image>
+ <Image name="screenLight" src="screen-light.png">
+  <AlphaAnimation loop="false" initPause="true">
+   <Alpha time="0" a="0" />
+   <Alpha time="155" a="0" />
+   <Alpha time="240" a="220" />
+   <Alpha time="300" a="105" />
+   <Alpha time="380" a="245" />
+   <Alpha time="470" a="180" />
+   <Alpha time="600" a="0" />
+   <Alpha time="620" a="0" />
+  </AlphaAnimation>
+ </Image>
+ <Image name="wordmark" src="wordmark.png">
+  <SourcesAnimation loop="false" initPause="true">
+   <Source time="0" src="crt-000.png" x="0" y="0" />
+   <Source time="120" src="crt-120.png" x="0" y="0" />
+   <Source time="144" src="crt-144.png" x="0" y="0" />
+   <Source time="168" src="crt-168.png" x="0" y="0" />
+   <Source time="192" src="crt-192.png" x="0" y="0" />
+   <Source time="216" src="crt-216.png" x="0" y="0" />
+   <Source time="240" src="crt-240.png" x="0" y="0" />
+   <Source time="264" src="crt-264.png" x="0" y="0" />
+   <Source time="288" src="crt-288.png" x="0" y="0" />
+   <Source time="312" src="crt-312.png" x="0" y="0" />
+   <Source time="336" src="crt-336.png" x="0" y="0" />
+   <Source time="360" src="crt-360.png" x="0" y="0" />
+   <Source time="384" src="crt-384.png" x="0" y="0" />
+   <Source time="408" src="crt-408.png" x="0" y="0" />
+   <Source time="432" src="crt-432.png" x="0" y="0" />
+   <Source time="456" src="crt-456.png" x="0" y="0" />
+   <Source time="480" src="wordmark.png" x="0" y="0" />
+   <Source time="620" src="wordmark.png" x="0" y="0" />
+  </SourcesAnimation>
+ </Image>
+</Icon>
