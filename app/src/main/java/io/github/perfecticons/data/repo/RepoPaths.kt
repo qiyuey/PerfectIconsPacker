@@ -8,6 +8,8 @@ object RepoPaths {
 
     fun copyBundledDynamicIcons(context: Context, directory: File): Map<String, File> {
         val assets = mapOf(
+            "com.follow.clash.rs" to "flclash-rs",
+            "com.follow.clash.MainActivity" to "flclash-rs",
             "org.telegram.messenger" to "telegram",
             "org.telegram.messenger.web" to "telegram",
             "com.tencent.wework" to "wecom",

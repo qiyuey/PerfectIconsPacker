@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+  <ExternalCommands>
+    <Trigger action="init,present,back_home_cancel">
+      <AnimationCommand target="upper" command="play(620,620)" />
+      <AnimationCommand target="lower" command="play(620,620)" />
+    </Trigger>
+    <Trigger action="back_home_start">
+      <AnimationCommand target="upper" command="play(0,0)" />
+      <AnimationCommand target="lower" command="play(0,0)" />
+    </Trigger>
+    <Trigger action="back_home_finish">
+      <AnimationCommand target="upper" command="play" />
+      <AnimationCommand target="lower" command="play" />
+    </Trigger>
+  </ExternalCommands>
+  <Image name="upper" src="upper.png" pivotX="181.01529" pivotY="146.34003">
+    <RotationAnimation loop="false" initPause="true">
+      <Rotation time="0" angle="-28.00000" />
+      <Rotation time="60" angle="-28.00000" />
+      <Rotation time="80" angle="-27.91197" />
+      <Rotation time="100" angle="-27.64899" />
+      <Rotation time="120" angle="-27.21437" />
+      <Rotation time="140" angle="-26.61356" />
+      <Rotation time="160" angle="-25.85414" />
+      <Rotation time="180" angle="-24.94564" />
+      <Rotation time="200" angle="-23.89949" />
+      <Rotation time="220" angle="-22.72886" />
+      <Rotation time="240" angle="-21.44845" />
+      <Rotation time="260" angle="-20.07437" />
+      <Rotation time="280" angle="-18.62391" />
+      <Rotation time="300" angle="-17.11529" />
+      <Rotation time="320" angle="-15.56750" />
+      <Rotation time="340" angle="-14.00000" />
+      <Rotation time="360" angle="-12.43250" />
+      <Rotation time="380" angle="-10.88471" />
+      <Rotation time="400" angle="-9.37609" />
+      <Rotation time="420" angle="-7.92563" />
+      <Rotation time="440" angle="-6.55155" />
+      <Rotation time="460" angle="-5.27114" />
+      <Rotation time="480" angle="-4.10051" />
+      <Rotation time="500" angle="-3.05436" />
+      <Rotation time="520" angle="-2.14586" />
+      <Rotation time="540" angle="-1.38644" />
+      <Rotation time="560" angle="-0.78563" />
+      <Rotation time="580" angle="-0.35101" />
+      <Rotation time="600" angle="-0.08803" />
+      <Rotation time="620" angle="-0.00000" />
+    </RotationAnimation>
+    <PositionAnimation loop="false" initPause="true">
+      <Item time="0" x="-39.08000" y="22.57207" />
+      <Item time="60" x="-39.08000" y="22.57207" />
+      <Item time="80" x="-38.95714" y="22.50110" />
+      <Item time="100" x="-38.59009" y="22.28910" />
+      <Item time="120" x="-37.98348" y="21.93873" />
+      <Item time="140" x="-37.14493" y="21.45440" />
+      <Item time="160" x="-36.08499" y="20.84219" />
+      <Item time="180" x="-34.81699" y="20.10981" />
+      <Item time="200" x="-33.35687" y="19.26647" />
+      <Item time="220" x="-31.72299" y="18.32276" />
+      <Item time="240" x="-29.93591" y="17.29057" />
+      <Item time="260" x="-28.01809" y="16.18286" />
+      <Item time="280" x="-25.99365" y="15.01357" />
+      <Item time="300" x="-23.88806" y="13.79741" />
+      <Item time="320" x="-21.72779" y="12.54967" />
+      <Item time="340" x="-19.54000" y="11.28603" />
+      <Item time="360" x="-17.35221" y="10.02240" />
+      <Item time="380" x="-15.19194" y="8.77466" />
+      <Item time="400" x="-13.08635" y="7.55849" />
+      <Item time="420" x="-11.06191" y="6.38921" />
+      <Item time="440" x="-9.14409" y="5.28150" />
+      <Item time="460" x="-7.35701" y="4.24931" />
+      <Item time="480" x="-5.72313" y="3.30560" />
+      <Item time="500" x="-4.26301" y="2.46226" />
+      <Item time="520" x="-2.99501" y="1.72988" />
+      <Item time="540" x="-1.93507" y="1.11767" />
+      <Item time="560" x="-1.09652" y="0.63333" />
+      <Item time="580" x="-0.48991" y="0.28296" />
+      <Item time="600" x="-0.12286" y="0.07096" />
+      <Item time="620" x="-0.00000" y="0.00000" />
+    </PositionAnimation>
+  </Image>
+  <Image name="lower" src="lower.png">
+    <PositionAnimation loop="false" initPause="true">
+      <Item time="0" x="58.00000" y="-33.50000" />
+      <Item time="60" x="58.00000" y="-33.50000" />
+      <Item time="80" x="57.81765" y="-33.39468" />
+      <Item time="100" x="57.27291" y="-33.08004" />
+      <Item time="120" x="56.37262" y="-32.56005" />
+      <Item time="140" x="55.12810" y="-31.84123" />
+      <Item time="160" x="53.55500" y="-30.93263" />
+      <Item time="180" x="51.67311" y="-29.84568" />
+      <Item time="200" x="49.50610" y="-28.59404" />
+      <Item time="220" x="47.08120" y="-27.19345" />
+      <Item time="240" x="44.42893" y="-25.66154" />
+      <Item time="260" x="41.58263" y="-24.01755" />
+      <Item time="280" x="38.57809" y="-22.28217" />
+      <Item time="300" x="35.45311" y="-20.47723" />
+      <Item time="320" x="32.24697" y="-18.62540" />
+      <Item time="340" x="29.00000" y="-16.75000" />
+      <Item time="360" x="25.75303" y="-14.87460" />
+      <Item time="380" x="22.54689" y="-13.02277" />
+      <Item time="400" x="19.42191" y="-11.21783" />
+      <Item time="420" x="16.41737" y="-9.48245" />
+      <Item time="440" x="13.57107" y="-7.83846" />
+      <Item time="460" x="10.91880" y="-6.30655" />
+      <Item time="480" x="8.49390" y="-4.90596" />
+      <Item time="500" x="6.32689" y="-3.65432" />
+      <Item time="520" x="4.44500" y="-2.56737" />
+      <Item time="540" x="2.87190" y="-1.65877" />
+      <Item time="560" x="1.62738" y="-0.93995" />
+      <Item time="580" x="0.72709" y="-0.41996" />
+      <Item time="600" x="0.18235" y="-0.10532" />
+      <Item time="620" x="0.00000" y="-0.00000" />
+    </PositionAnimation>
+  </Image>
+  <Image name="dot" src="dot.png" />
+</Icon>
