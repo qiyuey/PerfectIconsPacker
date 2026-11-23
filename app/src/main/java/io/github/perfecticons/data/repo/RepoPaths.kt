@@ -59,6 +59,8 @@ object RepoPaths {
             "com.xiaomi.market.ui.DefaultLauncherIcon" to "getapps",
             "com.ugreen.pro" to "ugreen",
             "com.ugreen.pro.ui.Splash" to "ugreen",
+            "com.xueqiu.android" to "xueqiu",
+            "com.xueqiu.android.view.WelcomeActivityAlias" to "xueqiu",
             "com.azure.authenticator" to "authenticator",
             "com.azure.authenticator.ui.LaunchActivity" to "authenticator",
             "tv.danmaku.bili" to "bilibili",

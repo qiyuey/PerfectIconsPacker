@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="382" height="382" screenWidth="1080" resDensity="480">
+  <ExternalCommands>
+    <Trigger action="init,present,back_home_cancel">
+      <AnimationCommand target="mark" command="play(620,620)" />
+    </Trigger>
+    <Trigger action="back_home_start">
+      <AnimationCommand target="mark" command="play(0,0)" />
+    </Trigger>
+    <Trigger action="back_home_finish">
+      <AnimationCommand target="mark" command="play" />
+    </Trigger>
+  </ExternalCommands>
+  <Image name="mark" src="mark.png">
+    <SourcesAnimation loop="false" initPause="true">
+      <Source time="0" src="mark.png" x="0" y="0" />
+      <Source time="160" src="trace-160.png" x="0" y="0" />
+      <Source time="177" src="trace-177.png" x="0" y="0" />
+      <Source time="194" src="trace-194.png" x="0" y="0" />
+      <Source time="211" src="trace-211.png" x="0" y="0" />
+      <Source time="228" src="trace-228.png" x="0" y="0" />
+      <Source time="245" src="trace-245.png" x="0" y="0" />
+      <Source time="262" src="trace-262.png" x="0" y="0" />
+      <Source time="279" src="trace-279.png" x="0" y="0" />
+      <Source time="296" src="trace-296.png" x="0" y="0" />
+      <Source time="313" src="trace-313.png" x="0" y="0" />
+      <Source time="330" src="trace-330.png" x="0" y="0" />
+      <Source time="347" src="trace-347.png" x="0" y="0" />
+      <Source time="364" src="trace-364.png" x="0" y="0" />
+      <Source time="381" src="trace-381.png" x="0" y="0" />
+      <Source time="398" src="trace-398.png" x="0" y="0" />
+      <Source time="415" src="trace-415.png" x="0" y="0" />
+      <Source time="432" src="trace-432.png" x="0" y="0" />
+      <Source time="449" src="trace-449.png" x="0" y="0" />
+      <Source time="466" src="trace-466.png" x="0" y="0" />
+      <Source time="483" src="trace-483.png" x="0" y="0" />
+      <Source time="500" src="trace-500.png" x="0" y="0" />
+      <Source time="517" src="trace-517.png" x="0" y="0" />
+      <Source time="534" src="trace-534.png" x="0" y="0" />
+      <Source time="551" src="trace-551.png" x="0" y="0" />
+      <Source time="568" src="trace-568.png" x="0" y="0" />
+      <Source time="585" src="trace-585.png" x="0" y="0" />
+      <Source time="600" src="mark.png" x="0" y="0" />
+      <Source time="620" src="mark.png" x="0" y="0" />
+    </SourcesAnimation>
+  </Image>
+</Icon>

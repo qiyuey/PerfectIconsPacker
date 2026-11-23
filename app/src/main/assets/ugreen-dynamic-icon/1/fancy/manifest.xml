@@ -14,18 +14,18 @@
  <Image name="mark" src="mark.png" pivotX="182" pivotY="181">
   <SourcesAnimation loop="false" initPause="true">
    <Source time="0" src="mark.png" x="0" y="0" />
-   <Source time="60" src="bay-060.png" x="0" y="0" />
-   <Source time="105" src="bay-105.png" x="0" y="0" />
-   <Source time="150" src="bay-150.png" x="0" y="0" />
-   <Source time="195" src="bay-195.png" x="0" y="0" />
-   <Source time="240" src="bay-240.png" x="0" y="0" />
-   <Source time="285" src="bay-285.png" x="0" y="0" />
-   <Source time="330" src="bay-330.png" x="0" y="0" />
-   <Source time="375" src="bay-375.png" x="0" y="0" />
-   <Source time="420" src="bay-420.png" x="0" y="0" />
-   <Source time="465" src="bay-465.png" x="0" y="0" />
-   <Source time="510" src="bay-510.png" x="0" y="0" />
-   <Source time="555" src="bay-555.png" x="0" y="0" />
+   <Source time="150" src="bay-060.png" x="0" y="0" />
+   <Source time="195" src="bay-105.png" x="0" y="0" />
+   <Source time="245" src="bay-150.png" x="0" y="0" />
+   <Source time="325" src="bay-195.png" x="0" y="0" />
+   <Source time="355" src="bay-240.png" x="0" y="0" />
+   <Source time="385" src="bay-285.png" x="0" y="0" />
+   <Source time="415" src="bay-330.png" x="0" y="0" />
+   <Source time="445" src="bay-375.png" x="0" y="0" />
+   <Source time="475" src="bay-420.png" x="0" y="0" />
+   <Source time="510" src="bay-465.png" x="0" y="0" />
+   <Source time="545" src="bay-510.png" x="0" y="0" />
+   <Source time="575" src="bay-555.png" x="0" y="0" />
    <Source time="600" src="mark.png" x="0" y="0" />
    <Source time="620" src="mark.png" x="0" y="0" />
   </SourcesAnimation>

@@ -1,44 +1,126 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Icon version="1" frameRate="60" width="432" height="432" screenWidth="1080" resDensity="480">
- <ExternalCommands>
-  <Trigger action="init,present,back_home_cancel">
-   <AnimationCommand target="route" command="play(620,620)" />
-   <AnimationCommand target="mark" command="play(620,620)" />
-  </Trigger>
-  <Trigger action="back_home_start">
-   <AnimationCommand target="route" command="play(0,0)" />
-   <AnimationCommand target="mark" command="play(0,0)" />
-  </Trigger>
-  <Trigger action="back_home_finish">
-   <AnimationCommand target="route" command="play" />
-   <AnimationCommand target="mark" command="play" />
-  </Trigger>
- </ExternalCommands>
- <Image name="route" src="route.png">
-  <AlphaAnimation loop="false" initPause="true">
-   <Alpha time="0" a="0" />
-   <Alpha time="105" a="255" />
-   <Alpha time="255" a="255" />
-   <Alpha time="500" a="0" />
-   <Alpha time="620" a="0" />
-  </AlphaAnimation>
- </Image>
- <Image name="mark" src="mark.png" pivotX="219" pivotY="222">
-  <PositionAnimation loop="false" initPause="true">
-   <Item time="0" easeType="SineEaseInOut" x="-83" y="55" />
-   <Item time="115" easeType="SineEaseInOut" x="-65" y="44" />
-   <Item time="245" easeType="SineEaseInOut" x="-26" y="1" />
-   <Item time="390" easeType="SineEaseInOut" x="13" y="-14" />
-   <Item time="510" easeType="SineEaseInOut" x="5" y="-4" />
-   <Item time="620" easeType="SineEaseInOut" x="0" y="0" />
-  </PositionAnimation>
-  <RotationAnimation loop="false" initPause="true">
-   <Item time="0" easeType="SineEaseInOut" value="-22" />
-   <Item time="115" easeType="SineEaseInOut" value="-16" />
-   <Item time="245" easeType="SineEaseInOut" value="-9" />
-   <Item time="390" easeType="SineEaseInOut" value="12" />
-   <Item time="510" easeType="SineEaseInOut" value="5" />
-   <Item time="620" easeType="SineEaseInOut" value="0" />
-  </RotationAnimation>
- </Image>
+  <ExternalCommands>
+    <Trigger action="init,present,back_home_cancel">
+      <AnimationCommand target="approach" command="play(620,620)" />
+      <AnimationCommand target="bend" command="play(620,620)" />
+      <AnimationCommand target="exit" command="play(620,620)" />
+      <AnimationCommand target="car" command="play(620,620)" />
+    </Trigger>
+    <Trigger action="back_home_start">
+      <AnimationCommand target="approach" command="play(0,0)" />
+      <AnimationCommand target="bend" command="play(0,0)" />
+      <AnimationCommand target="exit" command="play(0,0)" />
+      <AnimationCommand target="car" command="play(0,0)" />
+    </Trigger>
+    <Trigger action="back_home_finish">
+      <AnimationCommand target="approach" command="play" />
+      <AnimationCommand target="bend" command="play" />
+      <AnimationCommand target="exit" command="play" />
+      <AnimationCommand target="car" command="play" />
+    </Trigger>
+  </ExternalCommands>
+  <Image src="mark.png" />
+  <Image name="approach" src="approach.png">
+    <AlphaAnimation loop="false" initPause="true">
+      <Alpha time="0" a="0" />
+      <Alpha time="105" a="0" />
+      <Alpha time="166" a="224" />
+      <Alpha time="255" a="224" />
+      <Alpha time="334" a="0" />
+      <Alpha time="620" a="0" />
+    </AlphaAnimation>
+  </Image>
+  <Image name="bend" src="bend.png">
+    <AlphaAnimation loop="false" initPause="true">
+      <Alpha time="0" a="0" />
+      <Alpha time="148" a="0" />
+      <Alpha time="222" a="213" />
+      <Alpha time="396" a="213" />
+      <Alpha time="490" a="0" />
+      <Alpha time="620" a="0" />
+    </AlphaAnimation>
+  </Image>
+  <Image name="exit" src="exit.png">
+    <AlphaAnimation loop="false" initPause="true">
+      <Alpha time="0" a="0" />
+      <Alpha time="248" a="0" />
+      <Alpha time="337" a="213" />
+      <Alpha time="523" a="213" />
+      <Alpha time="600" a="0" />
+      <Alpha time="620" a="0" />
+    </AlphaAnimation>
+  </Image>
+  <Image name="car" src="car.png" pivotX="216" pivotY="216">
+    <AlphaAnimation loop="false" initPause="true">
+      <Alpha time="0" a="0" />
+      <Alpha time="173" a="0" />
+      <Alpha time="220" a="255" />
+      <Alpha time="552" a="255" />
+      <Alpha time="598" a="0" />
+      <Alpha time="620" a="0" />
+    </AlphaAnimation>
+    <PositionAnimation loop="false" initPause="true">
+      <Item time="0" x="88.0" y="-43.0" />
+      <Item time="178" x="88.0" y="-43.0" />
+      <Item time="194" x="88.0" y="-35.7" />
+      <Item time="210" x="88.0" y="-28.5" />
+      <Item time="226" x="88.0" y="-21.2" />
+      <Item time="242" x="87.9" y="-8.0" />
+      <Item time="258" x="85.0" y="9.6" />
+      <Item time="274" x="78.4" y="26.3" />
+      <Item time="290" x="68.6" y="41.1" />
+      <Item time="306" x="55.8" y="53.6" />
+      <Item time="322" x="39.4" y="63.8" />
+      <Item time="338" x="20.6" y="70.2" />
+      <Item time="354" x="0.8" y="72.0" />
+      <Item time="370" x="-18.8" y="69.2" />
+      <Item time="386" x="-37.3" y="61.9" />
+      <Item time="402" x="-54.2" y="49.9" />
+      <Item time="418" x="-67.9" y="33.9" />
+      <Item time="434" x="-77.3" y="14.9" />
+      <Item time="450" x="-81.7" y="-5.7" />
+      <Item time="466" x="-82.0" y="-26.9" />
+      <Item time="482" x="-81.3" y="-47.0" />
+      <Item time="498" x="-67.9" y="-59.7" />
+      <Item time="514" x="-48.5" y="-60.0" />
+      <Item time="530" x="-29.1" y="-60.0" />
+      <Item time="546" x="-9.7" y="-60.0" />
+      <Item time="562" x="9.8" y="-60.0" />
+      <Item time="578" x="29.2" y="-60.0" />
+      <Item time="598" x="36.4" y="-60.0" />
+      <Item time="620" x="36.4" y="-60.0" />
+    </PositionAnimation>
+    <RotationAnimation loop="false" initPause="true">
+      <Item time="0" value="0.0" />
+      <Item time="178" value="0.0" />
+      <Item time="194" value="-0.0" />
+      <Item time="210" value="0.0" />
+      <Item time="226" value="-0.0" />
+      <Item time="242" value="3.3" />
+      <Item time="258" value="15.4" />
+      <Item time="274" value="27.4" />
+      <Item time="290" value="39.5" />
+      <Item time="306" value="51.6" />
+      <Item time="322" value="64.7" />
+      <Item time="338" value="78.1" />
+      <Item time="354" value="91.5" />
+      <Item time="370" value="104.8" />
+      <Item time="386" value="118.3" />
+      <Item time="402" value="132.3" />
+      <Item time="418" value="146.5" />
+      <Item time="434" value="160.8" />
+      <Item time="450" value="175.1" />
+      <Item time="466" value="180.0" />
+      <Item time="482" value="195.9" />
+      <Item time="498" value="259.5" />
+      <Item time="514" value="270.0" />
+      <Item time="530" value="270.0" />
+      <Item time="546" value="270.0" />
+      <Item time="562" value="270.0" />
+      <Item time="578" value="270.0" />
+      <Item time="598" value="270.0" />
+      <Item time="620" value="270.0" />
+    </RotationAnimation>
+  </Image>
 </Icon>
