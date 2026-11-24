@@ -1,47 +1,52 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Icon version="1" frameRate="60" width="382" height="382" screenWidth="1080" resDensity="480">
-  <ExternalCommands>
-    <Trigger action="init,present,back_home_cancel">
-      <AnimationCommand target="mark" command="play(620,620)" />
-    </Trigger>
-    <Trigger action="back_home_start">
-      <AnimationCommand target="mark" command="play(0,0)" />
-    </Trigger>
-    <Trigger action="back_home_finish">
-      <AnimationCommand target="mark" command="play" />
-    </Trigger>
-  </ExternalCommands>
-  <Image name="mark" src="mark.png">
-    <SourcesAnimation loop="false" initPause="true">
-      <Source time="0" src="mark.png" x="0" y="0" />
-      <Source time="160" src="trace-160.png" x="0" y="0" />
-      <Source time="177" src="trace-177.png" x="0" y="0" />
-      <Source time="194" src="trace-194.png" x="0" y="0" />
-      <Source time="211" src="trace-211.png" x="0" y="0" />
-      <Source time="228" src="trace-228.png" x="0" y="0" />
-      <Source time="245" src="trace-245.png" x="0" y="0" />
-      <Source time="262" src="trace-262.png" x="0" y="0" />
-      <Source time="279" src="trace-279.png" x="0" y="0" />
-      <Source time="296" src="trace-296.png" x="0" y="0" />
-      <Source time="313" src="trace-313.png" x="0" y="0" />
-      <Source time="330" src="trace-330.png" x="0" y="0" />
-      <Source time="347" src="trace-347.png" x="0" y="0" />
-      <Source time="364" src="trace-364.png" x="0" y="0" />
-      <Source time="381" src="trace-381.png" x="0" y="0" />
-      <Source time="398" src="trace-398.png" x="0" y="0" />
-      <Source time="415" src="trace-415.png" x="0" y="0" />
-      <Source time="432" src="trace-432.png" x="0" y="0" />
-      <Source time="449" src="trace-449.png" x="0" y="0" />
-      <Source time="466" src="trace-466.png" x="0" y="0" />
-      <Source time="483" src="trace-483.png" x="0" y="0" />
-      <Source time="500" src="trace-500.png" x="0" y="0" />
-      <Source time="517" src="trace-517.png" x="0" y="0" />
-      <Source time="534" src="trace-534.png" x="0" y="0" />
-      <Source time="551" src="trace-551.png" x="0" y="0" />
-      <Source time="568" src="trace-568.png" x="0" y="0" />
-      <Source time="585" src="trace-585.png" x="0" y="0" />
-      <Source time="600" src="mark.png" x="0" y="0" />
-      <Source time="620" src="mark.png" x="0" y="0" />
-    </SourcesAnimation>
-  </Image>
+    <ExternalCommands>
+        <Trigger action="init,present,back_home_cancel">
+            <AnimationCommand target="mark" command="play(692,692)" />
+        </Trigger>
+        <Trigger action="back_home_start">
+            <AnimationCommand target="mark" command="play(0,0)" />
+        </Trigger>
+        <Trigger action="back_home_finish">
+            <AnimationCommand target="mark" command="play" />
+        </Trigger>
+    </ExternalCommands>
+    <Image name="mark" src="mark.png">
+        <SourcesAnimation loop="false" initPause="true">
+            <Source time="0" src="mark.png" x="0" y="0" />
+            <Source time="147" src="gold-147.png" x="0" y="0" />
+            <Source time="164" src="gold-164.png" x="0" y="0" />
+            <Source time="181" src="gold-181.png" x="0" y="0" />
+            <Source time="198" src="gold-198.png" x="0" y="0" />
+            <Source time="215" src="gold-215.png" x="0" y="0" />
+            <Source time="232" src="gold-232.png" x="0" y="0" />
+            <Source time="249" src="gold-249.png" x="0" y="0" />
+            <Source time="266" src="gold-266.png" x="0" y="0" />
+            <Source time="283" src="gold-283.png" x="0" y="0" />
+            <Source time="300" src="gold-300.png" x="0" y="0" />
+            <Source time="317" src="gold-317.png" x="0" y="0" />
+            <Source time="334" src="gold-334.png" x="0" y="0" />
+            <Source time="351" src="gold-351.png" x="0" y="0" />
+            <Source time="368" src="gold-368.png" x="0" y="0" />
+            <Source time="385" src="gold-385.png" x="0" y="0" />
+            <Source time="402" src="gold-402.png" x="0" y="0" />
+            <Source time="419" src="gold-419.png" x="0" y="0" />
+            <Source time="436" src="gold-436.png" x="0" y="0" />
+            <Source time="453" src="gold-453.png" x="0" y="0" />
+            <Source time="470" src="gold-470.png" x="0" y="0" />
+            <Source time="487" src="gold-487.png" x="0" y="0" />
+            <Source time="504" src="gold-504.png" x="0" y="0" />
+            <Source time="521" src="gold-521.png" x="0" y="0" />
+            <Source time="538" src="gold-538.png" x="0" y="0" />
+            <Source time="555" src="gold-555.png" x="0" y="0" />
+            <Source time="572" src="gold-572.png" x="0" y="0" />
+            <Source time="589" src="gold-589.png" x="0" y="0" />
+            <Source time="606" src="gold-606.png" x="0" y="0" />
+            <Source time="623" src="gold-623.png" x="0" y="0" />
+            <Source time="640" src="gold-640.png" x="0" y="0" />
+            <Source time="657" src="gold-657.png" x="0" y="0" />
+            <Source time="674" src="gold-674.png" x="0" y="0" />
+            <Source time="692" src="mark.png" x="0" y="0" />
+        </SourcesAnimation>
+    </Image>
 </Icon>

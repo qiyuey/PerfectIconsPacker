@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Icon version="1" frameRate="60" width="365" height="365" screenWidth="1080" resDensity="480">
+    <ExternalCommands>
+        <Trigger action="init,present,back_home_cancel">
+            <AnimationCommand target="mark" command="play(692,692)" />
+        </Trigger>
+        <Trigger action="back_home_start">
+            <AnimationCommand target="mark" command="play(0,0)" />
+        </Trigger>
+        <Trigger action="back_home_finish">
+            <AnimationCommand target="mark" command="play" />
+        </Trigger>
+    </ExternalCommands>
+    <Image name="mark" src="mark.png">
+        <SourcesAnimation loop="false" initPause="true">
+            <Source time="0" src="mark.png" x="0" y="0" />
+            <Source time="32" src="contour-032.png" x="0" y="0" />
+            <Source time="49" src="contour-049.png" x="0" y="0" />
+            <Source time="66" src="contour-066.png" x="0" y="0" />
+            <Source time="83" src="contour-083.png" x="0" y="0" />
+            <Source time="100" src="contour-100.png" x="0" y="0" />
+            <Source time="117" src="contour-117.png" x="0" y="0" />
+            <Source time="134" src="contour-134.png" x="0" y="0" />
+            <Source time="151" src="contour-151.png" x="0" y="0" />
+            <Source time="168" src="contour-168.png" x="0" y="0" />
+            <Source time="185" src="contour-185.png" x="0" y="0" />
+            <Source time="202" src="contour-202.png" x="0" y="0" />
+            <Source time="219" src="contour-219.png" x="0" y="0" />
+            <Source time="236" src="contour-236.png" x="0" y="0" />
+            <Source time="253" src="contour-253.png" x="0" y="0" />
+            <Source time="270" src="contour-270.png" x="0" y="0" />
+            <Source time="287" src="contour-287.png" x="0" y="0" />
+            <Source time="304" src="contour-304.png" x="0" y="0" />
+            <Source time="321" src="contour-321.png" x="0" y="0" />
+            <Source time="338" src="contour-338.png" x="0" y="0" />
+            <Source time="355" src="contour-355.png" x="0" y="0" />
+            <Source time="372" src="contour-372.png" x="0" y="0" />
+            <Source time="389" src="contour-389.png" x="0" y="0" />
+            <Source time="406" src="contour-406.png" x="0" y="0" />
+            <Source time="423" src="contour-423.png" x="0" y="0" />
+            <Source time="440" src="contour-440.png" x="0" y="0" />
+            <Source time="457" src="contour-457.png" x="0" y="0" />
+            <Source time="474" src="contour-474.png" x="0" y="0" />
+            <Source time="491" src="contour-491.png" x="0" y="0" />
+            <Source time="508" src="contour-508.png" x="0" y="0" />
+            <Source time="525" src="contour-525.png" x="0" y="0" />
+            <Source time="542" src="contour-542.png" x="0" y="0" />
+            <Source time="559" src="contour-559.png" x="0" y="0" />
+            <Source time="576" src="contour-576.png" x="0" y="0" />
+            <Source time="593" src="contour-593.png" x="0" y="0" />
+            <Source time="610" src="contour-610.png" x="0" y="0" />
+            <Source time="627" src="contour-627.png" x="0" y="0" />
+            <Source time="644" src="contour-644.png" x="0" y="0" />
+            <Source time="661" src="contour-661.png" x="0" y="0" />
+            <Source time="678" src="contour-678.png" x="0" y="0" />
+            <Source time="692" src="mark.png" x="0" y="0" />
+        </SourcesAnimation>
+    </Image>
+</Icon>
